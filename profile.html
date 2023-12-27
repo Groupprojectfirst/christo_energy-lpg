@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile-page</title>
+    <link rel="stylesheet" href="/home.css">
+
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+</head>
+<body>
+    <div class="container">
+        <button class="Logout">Log out</button>
+        <h1 class="greeting"></h1>
+
+
+        <form action="" class="footer-form">
+            <p class="footer-list-title">Create Profile</p>
+
+            <div class="input-wrapper">
+              <input
+                type="text"
+                name="full_name"
+                required
+                placeholder=" First Name"
+                aria-label="Your Name"
+                class="input-field"
+              />
+
+               <input
+                type="text"
+                name="full_name"
+                required
+                placeholder="Last Name"
+                aria-label="Your Name"
+                class="input-field"
+              />
+
+              <input
+                type="email"
+                name="email_address"
+                required
+                placeholder="Email"
+                aria-label="Email"
+                class="input-field"
+                
+              />
+            </div>
+
+            <div class="input-wrapper">
+              <input type="checkbox" class="check" onclick="myFunction()"><span> Show Password</span>
+             
+
+               <input 
+               type="password"
+               name="password"
+               placeholder="password"
+               class="input-field"
+               id="pass1"
+               
+               />
+
+               
+
+               
+               <input 
+               type="password"
+               name="password"
+               placeholder=" Confirm password"
+               class="input-field"
+               id="pass2"
+               
+               />
+               <input type="radio" class="radi"  onclick="checkPass(); return false;">verify password
+               <div id="error-nwl"></div>
+               <input type="checkbox" class="check" onclick="miFunction()">Show Password
+               
+               
+
+               <p><small>DATE OF BIRTH</small></p>
+              <input
+                type="date"
+                name="booking_date"
+                aria-label="Reservation date"
+                class="input-field"
+              />
+            </div>
+
+           <input type="file" name="picture" aria-label="picture" accept="image/*" class="input-field">
+
+            <button type="submit" class="btn">Submit</button>
+          </form>
+    </div>
+
+
+    
+
+
+    <script src="/home.js"></script>
+    
+</body>
+</html>
