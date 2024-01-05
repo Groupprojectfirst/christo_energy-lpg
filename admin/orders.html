@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LPG Orders</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+<div class="ordersCont">
+    <h1>Our orders</h1>
+    <div class="orders-container" id="orders-container">
+        <!-- Orders list will be inserted here -->
+      </div>
+    
+</div>
+  <script>
+    const orders = [
+      // An array of product orders for testing
+      // You can populate this array with your order data
+      // Format: { orderNumber: 'Order Number', product: 'Product Name', quantity: 2 }
+      // Example data below
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      { orderNumber: '1234', product: 'LPG Cylinder', quantity: 3 },
+      { orderNumber: '5678', product: 'LPG Regulator', quantity: 1 },
+      // Add more orders here...
+    ];
+
+    // Function to generate orders list HTML
+    function generateOrdersList(orders) {
+      const ordersContainer = document.getElementById('orders-container');
+
+      const ordersListHTML = orders.map(order => `
+        <div class="order">
+          <h2>Order Number: ${order.orderNumber}</h2>
+          <p>Product: ${order.product}</p>
+          <p>Quantity: ${order.quantity}</p>
+        </div>
+      `).join('');
+
+      ordersContainer.innerHTML = ordersListHTML;
+    }
+
+    // Call the function to generate orders list on page load
+    window.onload = function () {
+      generateOrdersList(orders);
+    };
+  </script>
+
+</body>
+</html>

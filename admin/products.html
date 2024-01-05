@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Inventory</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+
+  <div class="productsCont">
+    <h1 class="page-heading">Our Inventory</h1>
+
+    <div class="products-container" id="products-container">
+      <!-- Products list will be inserted here -->
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+      // Add more products here...
+      { name: 'Product A', quantity: 20, category: 'Category 1' },
+      { name: 'Product B', quantity: 15, category: 'Category 2' },
+    ];
+
+    function generateProductsList(products) {
+      const productsContainer = document.getElementById('products-container');
+
+      products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('product');
+
+        const productName = document.createElement('h2');
+        productName.textContent = product.name;
+
+        const category = document.createElement('p');
+        category.textContent = `Category: ${product.category}`;
+
+        const quantity = document.createElement('p');
+        quantity.textContent = `Quantity: ${product.quantity}`;
+
+        const productButtons = document.createElement('div');
+        productButtons.classList.add('product-buttons');
+
+        const addToHomepageBtn = document.createElement('button');
+        addToHomepageBtn.textContent = 'Add to Homepage';
+
+        const removeProductBtn = document.createElement('button');
+        removeProductBtn.textContent = 'Remove Product';
+
+        productButtons.appendChild(addToHomepageBtn);
+        productButtons.appendChild(removeProductBtn);
+
+        productDiv.appendChild(productName);
+        productDiv.appendChild(category);
+        productDiv.appendChild(quantity);
+        productDiv.appendChild(productButtons);
+
+        productsContainer.appendChild(productDiv);
+      });
+    }
+
+    window.onload = function () {
+      generateProductsList(products);
+    };
+  </script>
+</body>
+</html>

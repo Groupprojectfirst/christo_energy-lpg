@@ -1,0 +1,380 @@
+/* Define your styles using SCSS here */
+/* ... Your existing styles ... */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px;
+}
+
+.cart-items {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+.cart-summary {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Additional styles for the cart items */
+.cart-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.cart-item .item-image {
+  width: 80px;
+  height: 80px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+  border-radius: 4px;
+}
+
+.cart-item .item-details {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.cart-item .item-details h3 {
+  margin: 0;
+}
+
+.cart-item .item-details p {
+  margin: 5px 0;
+}
+
+.cart-item .item-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cart-item .item-actions button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0 5px;
+}
+
+/* Define more styles as needed */
+.checkout-page {
+  text-align: center;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.checkout-page h1 {
+  font-size: 24px;
+  width: 100%;
+  height: 4em;
+  margin: 0px;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.checkout-page .section {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 90%;
+}
+
+.checkout-page .section .section-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkout-page .section .section-title .icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.checkout-page .section .section-title h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.checkout-page .section .section-content .form-group {
+  margin-bottom: 20px;
+}
+
+.checkout-page .section .section-content .form-group input,
+.checkout-page .section .section-content .form-group select {
+  width: 99%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.checkout-page .section .section-content .form-group input:focus,
+.checkout-page .section .section-content .form-group select:focus {
+  border-color: #007bff;
+}
+
+.checkout-page .checkout-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-page .checkout-button .icon {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.checkout-page .checkout-button:hover {
+  background-color: #0056b3;
+}
+
+.checkout-page .order-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.checkout-page .order-popup .popup-content {
+  background-color: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 30em;
+  height: 20em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+.checkout-page .order-popup .popup-content .title {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 4px;
+}
+
+.checkout-page .order-popup .popup-content .orderCont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 90%;
+  margin: 15px;
+  margin-bottom: 5px;
+}
+
+.checkout-page .order-popup .popup-content .orderCont h4 {
+  color: orangered;
+}
+
+.checkout-page .order-popup .popup-content .orderCont ul {
+  width: 100%;
+}
+
+.checkout-page .order-popup .popup-content .orderCont li {
+  margin: 5px;
+  -webkit-box-shadow: 0 0 4px black;
+          box-shadow: 0 0 4px black;
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.checkout-page .order-popup .popup-content .orderCont .total {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.checkout-page .order-popup .popup-content .orderCont .total span {
+  color: #ff790c;
+}
+
+.checkout-page .order-popup .popup-content .orderCont .sumTotal {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 2em;
+}
+
+.checkout-page .order-popup .popup-content .shippingCont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 90%;
+  margin: 15px;
+  margin-top: 30px;
+}
+
+.checkout-page .order-popup .popup-content .shippingCont h4 {
+  color: orangered;
+}
+
+.checkout-page .order-popup .popup-content .shippingCont p {
+  text-align: left;
+  width: 100%;
+  margin: 4px;
+}
+
+.checkout-page .order-popup .popup-content .lastnote {
+  position: fixed;
+  bottom: 0%;
+  background-color: orange;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  left: 0%;
+  border-top: 2px solid black;
+}
+
+.checkout-page .order-popup .popup-content .lastnote h3 {
+  font-size: 25px;
+}
+
+@media (max-width: 518px) {
+  .checkout-page .order-popup .popup-content {
+    width: 95%;
+  }
+}
+
+.checkout-page .order-popup .close-button {
+  background-color: #34a9f7;
+  /* Blue button color */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.checkout-page .order-popup .proceed-button {
+  background-color: orange;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+/*# sourceMappingURL=style2.css.map */

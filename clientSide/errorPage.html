@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Error Page</title>
+  <style>
+    /* CSS for the error page */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9d6d5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .image {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    .text {
+      color: #FF6347;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #FF6347;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="image" src="https://via.placeholder.com/150" alt="Error Image">
+    <p class="text">Oops! Something went wrong.</p>
+    <button class="button" onclick="window.location.href='index.html'">Go Back</button>
+  </div>
+</body>
+</html>

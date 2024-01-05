@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Page</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+<div class="customersCont">
+    <h1>LPG Customers</h1>
+    <table class="customer-table" id="customer-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Customer data will be inserted here -->
+        </tbody>
+      </table>
+</div>
+
+  <script>
+    const customers = [
+      // An array of 30 customers for testing
+      // You can populate this array with your customer data
+      // Format: { name: 'Customer Name', email: 'customer@email.com' }
+      // Example data below
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      { name: 'John Doe', email: 'john@example.com' },
+      { name: 'Jane Smith', email: 'jane@example.com' },
+      // Add more customers here...
+    ];
+
+    // Function to generate customer table rows
+    function generateCustomerTable(customers) {
+      const customerTable = document.getElementById('customer-table');
+      const tbody = customerTable.querySelector('tbody');
+
+      customers.forEach(customer => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${customer.name}</td>
+          <td>${customer.email}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Call the function to generate customer table on page load
+    window.onload = function () {
+      generateCustomerTable(customers);
+    };
+  </script>
+
+</body>
+</html>

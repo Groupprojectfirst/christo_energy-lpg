@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reports</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+  <div class="reportsCont">
+    <h1>Reports and Notifications</h1>
+    <div class="notification" id="notification">
+        <!-- Notifications will be inserted here -->
+      </div>
+    
+      <script>
+        const notifications = [
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          'No new notifications',
+          'You have received a new report',
+          'Reminder: Meeting at 3 PM',
+          // Add more notifications...
+        ];
+    
+        function renderNotifications(notifications) {
+          const notificationDiv = document.getElementById('notification');
+          notifications.forEach(notification => {
+            const span = document.createElement('span');
+            span.textContent = notification;
+            notificationDiv.appendChild(span);
+            notificationDiv.appendChild(document.createElement('br'));
+          });
+        }
+    
+        window.onload = function () {
+          renderNotifications(notifications);
+        };
+      </script>
+    
+</body>
+</html>
