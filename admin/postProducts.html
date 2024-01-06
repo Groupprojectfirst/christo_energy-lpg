@@ -8,12 +8,19 @@
 <body>
  <div class="postProductCont">
     <h1 class="page-heading">Add Products</h1>
+    <div class="header">
+      <div class="logo"><img src="/christo_energy-lpg/images/2kg_gas.jpg" alt=""></div>
+      <div class="others">
+       <h2>Add Products to site</h2>
+      <a href="admin.html"><span class="icon">i</span> Back to home</a> 
+      </div>
+    </div>
 
     <div class="form-container">
       <form id="add-product-form" class="add-product-form" enctype="multipart/form-data">
         <div class="form-group">
           <label for="product-image">Product Image:</label>
-          <input type="file" id="product-image" name="product-image" accept="image/*">
+          <input type="file" id="product-image" name="product-image" accept="image/*" multiple>
         </div>
         <div class="form-group">
           <label for="product-name">Product Name:</label>
@@ -31,36 +38,6 @@
       </form>
     </div>
  </div>
-
-  <script>
-    const addProductForm = document.getElementById('add-product-form');
-
-    addProductForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      // Get form data
-      const formData = new FormData(addProductForm);
-      
-      // Process form data (you can handle this with JavaScript or send it to a server)
-      // For example, you can access form data like formData.get('product-name'), formData.get('product-quantity'), etc.
-      
-      // Example of accessing form data:
-      const productName = formData.get('product-name');
-      const productQuantity = formData.get('product-quantity');
-      const productPrice = formData.get('product-price');
-      const productImage = formData.get('product-image');
-
-      console.log('Product Name:', productName);
-      console.log('Quantity:', productQuantity);
-      console.log('Price:', productPrice);
-      console.log('Image:', productImage);
-
-      // You can further process or send this data to a server for storage or handling
-
-      // Reset the form after submission (optional)
-      addProductForm.reset();
-    });
-  </script>
-
+ <script src="addProducts.js"></script>
 </body>
 </html>

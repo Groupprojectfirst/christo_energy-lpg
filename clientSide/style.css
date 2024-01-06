@@ -1237,7 +1237,7 @@ cta::before{
 }
 
 .footer-top::after{
-  content: url(./images/delivery-boy.svg);
+  content: url(../images/delivery-boy.svg);
   position: absolute;
   bottom: -11px;
   left: -160px;
@@ -2479,5 +2479,20 @@ input::placeholder{
 .userSignedin span{
   font-size: 14px;
 }
-
-
+.seeMore{
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.seeMore a{
+  padding: 10px;
+  text-align: center;
+  background-color: orange;
+  color: white;
+  width: fit-content;
+  border-radius: 7px;
+}
