@@ -2496,3 +2496,29 @@ input::placeholder{
   width: fit-content;
   border-radius: 7px;
 }
+
+/* Styles for the visit prompt */
+.visit-prompt {
+  position: fixed;
+  color: white;
+  bottom: -100px; /* Initial position off the screen */
+  right: 20px;
+  background-color: rgb(255, 153, 0);
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 3;
+  transition: bottom 0.5s ease; /* Transition for smooth sliding animation */
+}
+
+.visit-prompt.show {
+  bottom: 20px; /* Slide in position */
+}
+.visit-prompt button {
+ background-color: black;
+ color: white;
+ padding: 5px;
+ border-radius: 6px;
+ border: 1px solid white;
+ margin-top: 10px;
+}

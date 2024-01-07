@@ -34,10 +34,9 @@ function sendData(url, dataToSend) {
         }else{
          console.log('Received data:', data);
         //  setCookie("jwt", data.data.token, 10)
-        alert(data.message + ". Redirecting you back to the site")
-       
+        alert("Welcome back. Redirecting you back to the site")
         setTimeout(()=>{
-          window.location.href = "http://127.0.0.1:5500/lpg-christo-website/";
+          window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide";
         }, 1000)   
         }  
       })

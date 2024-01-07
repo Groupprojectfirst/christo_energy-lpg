@@ -1,5 +1,4 @@
 
-
 const decrease="decrease"
 const increase="increase"
 // Function to render items in the cart
@@ -12,7 +11,7 @@ function renderCart(arr) {
     const cartItemElem = document.createElement('div');
     cartItemElem.classList.add('cart-item');
     cartItemElem.innerHTML = `
-      <img src="http://127.0.0.1:5500/images/2kg_gas.jpg" alt="${cartItem.itemName}" class="item-image">
+      <img src="http://127.0.0.1:5500/christo_energy-lpg/images/2kg_gas.jpg" alt="${cartItem.itemName}" class="item-image">
       <div class="item-details">
         <h3>${cartItem.itemName}</h3>
         <p>$${Number(cartItem.price).toFixed(2)}</p>
@@ -92,7 +91,7 @@ const items = [
       .then((res) => {
        fetchCartItems('http://127.0.0.1:8080/api/myCarts', buyerId)
        });
-    window.location.href = "http://127.0.0.1:5500/lpg-christo-website/carts.html";
+    window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/carts.html";
   }else{
     return
   }
@@ -125,10 +124,9 @@ const items = [
   }
 
 
-
   const checkoutBtn=document.querySelector("#checkoutBtn")
   checkoutBtn.addEventListener('click', ()=>{
     localStorage.setItem("orderType", "NOT-REFILL")
-    window.open("http://127.0.0.1:5500/lpg-christo-website/checkout.html");
+    window.open("http://127.0.0.1:5500/christo_energy-lpg/clientSide/checkout.html");
   })
   

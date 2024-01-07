@@ -7,13 +7,65 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+   <!--header-->
+   <header class="header active" data-header>
+    <div class="container">
+      <img src="/christo_energy-lpg/images/img.jpg" width="50px" alt="christo logo" />
+      <h1>
+        <a href="index.html" class="logo"
+          >Christo_Energy <span class="span">.</span></a
+        >
+      </h1>
+
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+         
+        </ul>
+      </nav>
+
+      <div class="header-btn-group">
+        <button class="search-btn" arial-label="Search" data-search-btn>
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+
+        <a href="carts.html" class="nav-link">
+          <i class='bx bxs-cart-alt icon'></i>
+          <span class="badge">0</span>
+        </a>
+
+        <a href="#profile_form" class="profile_form_user">
+          <button class="btn btn-hover " id="button">Sign in</button>
+        </a>
+
+        <div class="userSignedin">
+          <img src="/christo_energy-lpg/images/2kg_gas.jpg" alt="">
+          <div class="others">
+            <span class="name">Godswill</span> 
+            <button>Logout</button>
+          </div>
+         
+        </div>
+
+        <button
+          class="nav-toggle-btn"
+          aria-label="Toggle Menu"
+          data-nav-toggle-btn
+        >
+          <span class="line top"></span>
+          <span class="line middle"></span>
+          <span class="line bottom"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
      <!--food menu-->
 
-        <section class="section white food-menu" id="food-menu">
+        <section class="section white food-menu" id="food-menu" style="margin-top:8em;">
           <div class="container">
 
             <h2 class="h2 section-title">
-              Reliable and Affordable <span class="span">LPG Products</span>
+              Our <span class="span">LPG Products</span>
             </h2>
 
             <ul class="filter-list">
@@ -41,643 +93,8 @@
             <ul class="food-menu-list">
               
             </ul>
-          </div>
+          </div> 
         </section>
-        
-        <script>
-            window.onload = function() {
-              const menuItems = [
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                {
-                  imgSrc: "/images/gas_set.jpg",
-                  alt: "Sets of gas cylinder",
-                  discount: "-15%",
-                  title: "Gas Cylinders",
-                  price: 18000,
-                  originalPrice: 20000
-                },
-                {
-                  imgSrc: "/images/cylinder.jpg",
-                  alt: "Cooking 4 burner gas cooker",
-                  discount: "-10%",
-                  title: "Gas Cooker",
-                  price: 85000,
-                  originalPrice: 100000
-                },
-                {
-                  imgSrc: "/images/electric_gas.jpg",
-                  alt: "Electric gas cooker",
-                  discount: "-25%",
-                  title: "Electric Gas Cooker",
-                  price: 88000,
-                  originalPrice: 110000
-                },
-                // Add more menu items here...
-              ];
-        
-              const foodMenu = document.querySelector('.food-menu-list');
-    
-              const menuHTML = menuItems.map(item => `
-                <li>
-                  <div class="food-menu-card">
-                    <div class="card-banner">
-                      <img
-                        src="${item.imgSrc}"
-                        width="300"
-                        height="300"
-                        loading="lazy"
-                        alt="${item.alt}"
-                        class="w-100"
-                      />
-                      <div class="badge">${item.discount}</div>
-                      <button class="btn food-menu-btn">add to cart</button>
-                      <div class="wrapper">
-                        <div class="rating-wrapper">
-                          <ion-icon name="star"></ion-icon>
-                          <ion-icon name="star"></ion-icon>
-                          <ion-icon name="star"></ion-icon>
-                          <ion-icon name="star"></ion-icon>
-                          <ion-icon name="star"></ion-icon>
-                        </div>
-                      </div>
-                      <h3 class="h3 card-title">${item.title}</h3>
-                      <div class="price-wrapper">
-                        <p class="price-text">Price:</p>
-                        &#x20A6;<data class="price" value="${item.price}">${item.price}</data>
-                        <del class="del">&#x20A6; ${item.originalPrice}</del>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              `).join('');
-        
-              foodMenu.innerHTML = menuHTML;
-            };
-
-
-            
-// add to carts
-// add to carts
-// add to carts
-const card_banner=document.querySelectorAll(".food-menu-card .card-banner")
-console.log(card_banner)
-const saveItemToCart=(url, dataToSend)=>{
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json', // Assuming JSON data
-    },
-    credentials:'include',
-    body: JSON.stringify(dataToSend),
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Received data:', data);
-      if(data.message=="login first"){
-        alert("Login to add items to the cart")
-      }else{
-        console.log(data)
-      }
-      fetchCartItems('http://127.0.0.1:8080/api/myCarts', localStorage.getItem("userId"))
-    })
-    .catch(error => {
-      console.error('There was a problem with adding to carts:', error);
-    });
-}
-var objArr = [];
-
-card_banner.forEach((item, i) => {
-  var obj = { status: false, position: i };
-  objArr.push(obj); // Store obj in an array to keep track of each item's status
-
-  item.querySelector('button').addEventListener("click", () => {
-    if (obj.status == true) {
-      alert("Item already added to the cart");
-      return;
-    } else {
-      obj.status = true;
-      obj.imageLink = item.querySelector('img').src;
-      obj.itemName = item.querySelector(".card-title").textContent;
-      obj.price = item.querySelector(".price").value;
-      obj.quantity=1
-      obj.productId=generateUniqueID()
-      obj.buyerId=localStorage.getItem("userId")
-
-      // cartsNum += 1;
-      // cartValue.textContent = cartsNum;
-      saveItemToCart("http://127.0.0.1:8080/api/addToCart", obj )
-    }
-  });
-});
-
-          </script>
+        <script src="products.js"></script>
 </body>
 </html>

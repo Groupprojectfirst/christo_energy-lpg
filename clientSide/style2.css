@@ -1,19 +1,29 @@
 /* Define your styles using SCSS here */
 /* ... Your existing styles ... */
-body {
+.cartsSection {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  /* Additional styles for the cart items */
 }
 
-header {
+.cartsSection header {
   background-color: #333;
   color: white;
   text-align: center;
   padding: 20px 0;
 }
 
-main {
+.cartsSection .head {
+  background-color: orange;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.cartsSection main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -23,13 +33,13 @@ main {
   padding: 20px;
 }
 
-.cart-items {
+.cartsSection .cart-items {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
 }
 
-.cart-summary {
+.cartsSection .cart-summary {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -38,8 +48,7 @@ main {
   border-radius: 8px;
 }
 
-/* Additional styles for the cart items */
-.cart-item {
+.cartsSection .cart-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,7 +60,7 @@ main {
   padding-bottom: 10px;
 }
 
-.cart-item .item-image {
+.cartsSection .cart-item .item-image {
   width: 80px;
   height: 80px;
   -o-object-fit: cover;
@@ -60,21 +69,21 @@ main {
   border-radius: 4px;
 }
 
-.cart-item .item-details {
+.cartsSection .cart-item .item-details {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
 
-.cart-item .item-details h3 {
+.cartsSection .cart-item .item-details h3 {
   margin: 0;
 }
 
-.cart-item .item-details p {
+.cartsSection .cart-item .item-details p {
   margin: 5px 0;
 }
 
-.cart-item .item-actions {
+.cartsSection .cart-item .item-actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -83,7 +92,7 @@ main {
           align-items: center;
 }
 
-.cart-item .item-actions button {
+.cartsSection .cart-item .item-actions button {
   border: none;
   background-color: transparent;
   cursor: pointer;

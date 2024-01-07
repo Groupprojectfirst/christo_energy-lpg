@@ -1,5 +1,87 @@
 'use strict';
 
+// JavaScript to check for cookie and show/close the visit prompt with sliding animation
+window.onload = function() {
+  const visitPrompt = document.getElementById('visitPrompt');
+  checkNewVisit()
+};
+
+function closePrompt() {
+  createNewSession(localStorage.getItem("userId") || "")
+  const visitPrompt = document.getElementById('visitPrompt');
+  visitPrompt.classList.remove('show'); // Remove 'show' class to slide out
+}
+
+
+// function for user visiting the site
+// function for user visiting the site
+const checkNewVisit=()=>{
+  fetch("http://127.0.0.1:8080/api/newVisit", {
+    method: 'GET',
+    headers: {
+    'Content-Type': 'application/json', // Assuming JSON data
+    },
+    credentials:'include'
+    })
+    .then(response => {
+    if (!response.ok) {
+    throw new Error('Network response was not ok');
+    }
+    return response.json();
+    })
+    .then((res)=>{
+      console.log(res)
+      if(res.message=="New user"){
+         setTimeout(()=>{
+          visitPrompt.classList.add('show');
+         },1000)
+      }
+    })
+}
+
+const createNewSession=(id)=>{
+  fetch("http://127.0.0.1:8080/api/newSession", {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json', // Assuming JSON data
+    },
+    credentials:'include',
+    body: JSON.stringify({userId: id}),
+    })
+    .then(response => {
+    if (!response.ok) {
+    throw new Error('Network response was not ok');
+    }
+    return response.json();
+    })
+    .then((res)=>{
+      console.log(res)
+      setTimeout(()=>{
+        createNewEvent("New visitor", "You have a new visit today!")
+      },2000)
+    })
+}
+const createNewEvent=(eventType, eventData)=>{
+  fetch("http://127.0.0.1:8080/api/newEvent", {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json', // Assuming JSON data
+    },
+    credentials:'include',
+    body: JSON.stringify({ event_type:eventType, event_data:eventData}),
+    })
+    .then(response => {
+    if (!response.ok) {
+    throw new Error('Network response was not ok');
+    }
+    return response.json();
+    })
+    .then((res)=>{
+      console.log(res)
+    })
+}
+
+
 /* navbar toggle*/
 const cartValue=document.querySelector(".header-btn-group .badge")
 const headerDetailsLoggedOut=document.querySelector('.header-btn-group .profile_form_user')
@@ -9,7 +91,7 @@ const fetchCartItems = async(url, buyerId) => {
     method: "POST",
     headers: {
       'Content-Type': 'application/json', // Assuming JSON data
-    },
+    }, 
     credentials:'include',
     body: JSON.stringify({ buyerId: buyerId})
   })
@@ -66,7 +148,7 @@ headerDetailsLoggedIn.querySelector("button").addEventListener('click', ()=>{
  var result= confirm("Are you sure you want to logout?");
   if(result){
     logout("http://127.0.0.1:8080/api/logout")
-    window.location.href = "http://127.0.0.1:5500/lpg-christo-website/";
+    window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/index.html";
   }else{
     return
   }
@@ -219,69 +301,6 @@ function closeSlide() {
 
 
 
-// add to carts
-// add to carts
-// add to carts
-const card_banner=document.querySelectorAll(".food-menu-card .card-banner")
-const saveItemToCart=(url, dataToSend)=>{
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json', // Assuming JSON data
-    },
-    credentials:'include',
-    body: JSON.stringify(dataToSend),
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Received data:', data);
-      if(data.message=="login first"){
-        alert("Login to add items to the cart")
-      }else{
-        console.log(data)
-      }
-      fetchCartItems('http://127.0.0.1:8080/api/myCarts', localStorage.getItem("userId"))
-    })
-    .catch(error => {
-      console.error('There was a problem with adding to carts:', error);
-    });
-}
-var objArr = [];
-
-card_banner.forEach((item, i) => {
-  var obj = { status: false, position: i };
-  objArr.push(obj); // Store obj in an array to keep track of each item's status
-
-  item.querySelector('button').addEventListener("click", () => {
-    if (obj.status == true) {
-      alert("Item already added to the cart");
-      return;
-    } else {
-      obj.status = true;
-      obj.imageLink = item.querySelector('img').src;
-      obj.itemName = item.querySelector(".card-title").textContent;
-      obj.price = item.querySelector(".price").value;
-      obj.quantity=1
-      obj.productId=generateUniqueID()
-      obj.buyerId=localStorage.getItem("userId")
-
-      // cartsNum += 1;
-      // cartValue.textContent = cartsNum;
-      saveItemToCart("http://127.0.0.1:8080/api/addToCart", obj )
-    }
-  });
-});
-
-
-
-
-
-
 // logic for booking now
 // logic for booking now
 // logic for booking now
@@ -298,19 +317,21 @@ booking.querySelector('.bookRefillBut').addEventListener("click", (e) => {
  if(!fuel || !quantity){
    alert("input the details!")
    return
- }
- const refilOrder={
+ }else{
+  const refilOrder={
   fuelType: fuel,
   liters: quantity,
   amountPerLiter:amountPerLiter 
  }
 
  localStorage.setItem("userOrder", JSON.stringify(refilOrder))
- alert("order recieved")
  localStorage.setItem("orderType", "REFILL")
+ alert("order recieved")
  setTimeout(()=>{
-  window.location.href="http://127.0.0.1:5500/lpg-christo-website/checkout.html"
+  window.location.href="http://127.0.0.1:5500/christo_energy-lpg/clientSide/checkout.html"
  }, 1000)
+ }
+ 
 });
 
 
@@ -364,8 +385,9 @@ function sendData(url, dataToSend) {
       alert("logging you in")
 
       setTimeout(()=>{
+        createNewEvent("New user", "You have a new user today!")
         window.location.href = "http://127.0.0.1:5500/lpg-christo-website/login.html";
-      }, 2000)
+      }, 1200)
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
@@ -422,8 +444,114 @@ function getCookie(cookieName) {
 
 
 
+// add to carts
+// add to carts
+// add to carts
+const foodMenu = document.querySelector('.food-menu-list');
+var obj = { status: false};
+const addItem=(item)=>{
+  obj.status = true;
+  obj.imageLink ="http://127.0.0.1:5501/christo_energy-lpg/images/cylinder.jpg";
+  obj.itemName = item.product_name
+  obj.price = item.product_price
+  obj.quantity=1
+  obj.productId=item.product_id
+  obj.buyerId=localStorage.getItem("userId")
+  
+  saveItemToCart("http://127.0.0.1:8080/api/addToCart", obj )
+  }
+
+const saveItemToCart=(url, dataToSend)=>{
+    fetch(url, {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json', // Assuming JSON data
+    },
+    credentials:'include',
+    body: JSON.stringify(dataToSend),
+    })
+    .then(response => {
+    if (!response.ok) {
+    throw new Error('Network response was not ok');
+    }
+    return response.json();
+    })
+    .then(data => {
+    console.log('Received data:', data);
+    if(data.message=="login first"){
+    alert("Login to add items to the cart")
+    }else if(data.message=="Item already exists in the cart"){
+      alert(data.message)
+      return;
+    } else{
+    console.log(data)
+    }
+    fetchCartItems('http://127.0.0.1:8080/api/myCarts', localStorage.getItem("userId"))
+    })
+    .catch(error => {
+    console.error('There was a problem with adding to carts:', error);
+    });
+}
+
+
+const generateProductsList=(array)=>{
+  array.forEach((item, i)=>{
+    console.log(item.status)
+    if(item.status=='0'){
+      return;
+    }else{
+     foodMenu.innerHTML +=`
+    <li>
+      <div class="food-menu-card">
+        <div class="card-banner">
+          <img
+            src="http://127.0.0.1:5500/christo_energy-lpg/images/2kg_gas.jpg"
+            width="300"
+            height="300"
+            loading="lazy"
+            alt="${item.alt}"
+            class="w-100"
+          />
+          <div class="badge">15</div>
+          <button class="btn food-menu-btn" onclick='addItem(${JSON.stringify(item)})'>add to cart</button>
+          <div class="wrapper">
+            <div class="rating-wrapper">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+          </div>
+          <h3 class="h3 card-title">${item.product_name}</h3>
+          <div class="price-wrapper">
+            <p class="price-text">Price:</p>
+            &#x20A6;<data class="price" value="${item.product_price}">${Number(item.product_price).toFixed()}</data>
+            <del class="del">&#x20A6; ${Number(Number(item.product_price)* 0.01).toFixed()}</del>
+          </div>
+        </div>
+      </div>
+    </li>
+  `  
+    }
+   
+  })
+
+}
+
+
+const fetchProducts=()=>{
+  fetch("http://127.0.0.1:8080/api/allProducts", {
+    method: "GET",
+    credentials: "include"
+  })
+    .then((res) => res.json())
+    .then((res) => {
+       console.log(res)
+       generateProductsList(res)
+    })
+}
+
 
 fetchUser("http://127.0.0.1:8080/api/user")
-
-
-
+fetchProducts()

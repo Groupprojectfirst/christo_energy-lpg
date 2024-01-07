@@ -31,11 +31,75 @@
   <div class="loader" id="loader"></div>
 
   <script>
-    // JavaScript to hide the loader after 3 seconds (for demonstration purposes)
-    // setTimeout(function() {
-    //   var loader = document.getElementById('loader');
-    //   loader.style.display = 'none';
-    // }, 3000);
-  </script>
+  const confirmPayment = (url, data, ref) => {
+  try {
+    const myOrderObj = data.order; // Assuming data is already parsed JSON
+    const allDetails = { ...data, order: myOrderObj, ref: ref };
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((res) => {
+        if (res.status === "payment success") {
+          sendOrder("http://127.0.0.1:8080/api/order", allDetails);
+          window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/successPage.html";
+        } else {
+          alert("Payment not completed");
+          window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/errorPage.html";
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle errors here, maybe redirect to an error page
+        window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/errorPage.html";
+      });
+  } catch (error) {
+    console.error('Error:', error);
+    // Handle errors here, maybe redirect to an error page
+    window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/errorPage.html";
+  }
+};
+
+const ref = localStorage.getItem("ref");
+const myOrder = JSON.parse(localStorage.getItem("myOrder")); // Parse if needed
+
+confirmPayment(`http://127.0.0.1:8080/api/confirmPayment/${ref}`, myOrder, ref);
+
+const sendOrder = (url, orderData) => {
+  fetch(url, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify(orderData)
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      // Handle errors here, maybe redirect to an error page
+      window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/errorPage.html";
+    });
+};
+
+ </script>
 </body>
 </html>
