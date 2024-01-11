@@ -56,11 +56,23 @@ const fetchAdmin = (url) => {
          }, 1000)
           localStorage.setItem("adminloggedin", "false")
         } else {
-          console.log(res)
+          fetchCustomers()
+          fetchOrders()
+          fetchReports()
          localStorage.setItem("adminloggedin", "true")
          }
       });
   };
+
+  const reportsCount=document.querySelector(".sidebar .reports_ .message-count")
+  const customersCount=document.querySelector(".sidebar .customers_ .message-count")
+  const ordersCount=document.querySelector(".sidebar .orders_ .message-count")
+
+//   reportsCount.style.display="none"
+//  customersCount.style.display="none"
+//  ordersCount.style.display="none"
+
+  console.log(reportsCount, customersCount, ordersCount)
 
   const logout=(url)=>{
     fetch(url, {
@@ -75,14 +87,94 @@ const fetchAdmin = (url) => {
 
   
 logoutButton.addEventListener('click', ()=>{
-   var result= confirm("Are you sure you want to logout?");
-    if(result){
-      logout("http://127.0.0.1:8080/api/logoutAdmin")
-      window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/admin";
-    }else{
-      return
-    }
+  showQuestionPopup("Are you sure you want to logout?")
   })
+
+  // Function to show question prompt popup
+function showQuestionPopup(writtenText) {
+  const text = document.querySelector('#questionPopup p');
+  const questionPopup = document.getElementById('questionPopup');
+  questionPopup.style.display = 'flex';
+  text.textContent=writtenText
+}
+
+// Function to close question prompt popup
+function closeQuestionPopup() {
+  const questionPopup = document.getElementById('questionPopup');
+  questionPopup.style.display = 'none';
+}
+
+// Function to handle confirmation in question prompt popup
+function confirmAction() {
+  closeQuestionPopup(); 
+  logout("http://127.0.0.1:8080/api/logoutAdmin")
+  window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/admin";
+}
+
+const fetchCustomers=()=>{
+  var allArr=[]
+  fetch("http://127.0.0.1:8080/api/allBuyers", {
+            method: "GET",
+            credentials: "include"
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              //  console.log(res) 
+              res.map((item, i)=>{
+               if(item.seen=="NOT-SEEN"){
+                customersCount.style.display=""
+                allArr.push(item)
+               }else{
+                customersCount.style.display="none"
+                return;
+               }
+              })
+              // console.log(allArr)
+              customersCount.textContent=allArr.length
+      })
+}
+const fetchOrders=()=>{
+  var allArr=[]
+  fetch("http://127.0.0.1:8080/api/fetchAllOrders", {
+    method: "GET",
+    credentials: "include"
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      //  console.log(res)
+      res.map((item, i)=>{
+        if(item.seen=="NOT-SEEN"){
+          ordersCount.style.display=""
+         allArr.push(item)
+        }else{
+          ordersCount.style.display="none"
+         return;
+        }
+       })
+      //  console.log(allArr)
+       ordersCount.textContent=allArr.length
+    })
+}
+
+
+const fetchReports = () => {
+  var allArr = [];
+  fetch("http://127.0.0.1:8080/api/getAllEvents", {
+    method: "GET",
+    credentials: "include"
+  })
+  .then((res) => res.json())
+  .then((res) => {
+    allArr = res.filter(item => item.seen === "NOT-SEEN");
+    console.log(allArr);
+    reportsCount.textContent = allArr.length;
+    reportsCount.style.display = allArr.length > 0 ? "" : "none";
+  })
+  .catch((error) => {
+    // Handle errors or show error messages to the user
+    console.error('There was a problem fetching the reports:', error);
+  });
+};
 
   fetchAdmin("http://127.0.0.1:8080/api/adminside")
 

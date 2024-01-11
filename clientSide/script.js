@@ -145,13 +145,14 @@ const logout=(url)=>{
 }
 
 headerDetailsLoggedIn.querySelector("button").addEventListener('click', ()=>{
- var result= confirm("Are you sure you want to logout?");
-  if(result){
-    logout("http://127.0.0.1:8080/api/logout")
-    window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/index.html";
-  }else{
-    return
-  }
+//  var result= confirm("Are you sure you want to logout?");
+  showQuestionPopup("Are you sure you want to logout?")
+  // if(result){
+  //   logout("http://127.0.0.1:8080/api/logout")
+  //   window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/index.html";
+  // }else{
+  //   return
+  // }
 })
 
 
@@ -315,7 +316,7 @@ booking.querySelector('.bookRefillBut').addEventListener("click", (e) => {
  const amountPerLiter = selectedOption.selectedOptions[0].dataset.amount;
  const quantity = quantityInput.value;  
  if(!fuel || !quantity){
-   alert("input the details!")
+   showAuthPopup("Input the details")
    return
  }else{
   const refilOrder={
@@ -326,10 +327,10 @@ booking.querySelector('.bookRefillBut').addEventListener("click", (e) => {
 
  localStorage.setItem("userOrder", JSON.stringify(refilOrder))
  localStorage.setItem("orderType", "REFILL")
- alert("order recieved")
+ showLoadingPopup()
  setTimeout(()=>{
   window.location.href="http://127.0.0.1:5500/christo_energy-lpg/clientSide/checkout.html"
- }, 1000)
+ }, 2000)
  }
  
 });
@@ -344,24 +345,49 @@ booking.querySelector('.bookRefillBut').addEventListener("click", (e) => {
 
 const userFormDetails=document.querySelector('.footer form')
 const submitDetails=document.querySelector(".footer form button")
+const allInputs=document.querySelectorAll('.footer form input')
+
+
 
 submitDetails.addEventListener("click", (e) => {
   e.preventDefault();
-  var image = userFormDetails.querySelector(".userImg").files[0];
+  const invalidInputs = [];
+  allInputs.forEach((item) => {
+    item.style.border = '1px solid #ccc';
 
-  setFileToBase(image, (dataURI) => {
-    var user = {
-      fullName: userFormDetails.querySelector(".userName").value,
-      email: userFormDetails.querySelector(".userEmail").value,
-      password: userFormDetails.querySelector(".userPass").value,
-      date: userFormDetails.querySelector(".userDate").value,
-      image: "dataURI",
-      code: generateUniqueID()
-     };
-
-    console.log(user);
-    sendData("http://127.0.0.1:8080/api/signup", user)
+    if (item.value === "") {
+      item.style.border = '2px solid red';
+      invalidInputs.push(item.name);
+      showAuthPopup("fill in all details", "red")
+    } else if (item.name === "email_address" && (!item.value.includes('@') || !item.value.includes('.'))) {
+      item.style.border = '2px solid red';
+      showAuthPopup("Please enter a valid email", "red")
+      invalidInputs.push(item.name);
+    }
+    else if (item.name === "password" && (item.value.length <= 6)) {
+      item.style.border = '2px solid red';
+      showAuthPopup("Password must be up to 7 chars", "red")
+      invalidInputs.push(item.name);
+    }
   });
+
+  if(invalidInputs.length===0){
+    var image = userFormDetails.querySelector(".userImg").files[0];
+
+    setFileToBase(image, (dataURI) => {
+      var user = {
+        fullName: userFormDetails.querySelector(".userName").value,
+        email: userFormDetails.querySelector(".userEmail").value,
+        password: userFormDetails.querySelector(".userPass").value,
+        date: userFormDetails.querySelector(".userDate").value,
+        image: "dataURI",
+        code: generateUniqueID()
+       };
+  
+      console.log(user);
+      sendData("http://127.0.0.1:8080/api/signup", user)
+    });
+  }
 });
 
 
@@ -376,20 +402,26 @@ function sendData(url, dataToSend) {
   })
     .then(response => {
       if (!response.ok) {
+        showAuthPopup("Please try again", "red")
         throw new Error('Network response was not ok');
       }
       return response.json();
     })
     .then(data => {
-      console.log('Received data:', data);
-      alert("logging you in")
+      if(data.message=="user already exists"){
+        showAuthPopup(data.message, "red")
+      }else{
+        // console.log('Received data:', data);
+      showAuthPopup("Signup successful", "rgb(13, 187, 13)")
 
       setTimeout(()=>{
         createNewEvent("New user", "You have a new user today!")
-        window.location.href = "http://127.0.0.1:5500/lpg-christo-website/login.html";
+        window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/verificationPage.html";
       }, 1200)
+      }
     })
     .catch(error => {
+      showAuthPopup("Please try again", "red")
       console.error('There was a problem with the fetch operation:', error);
     });
 }
@@ -479,9 +511,11 @@ const saveItemToCart=(url, dataToSend)=>{
     .then(data => {
     console.log('Received data:', data);
     if(data.message=="login first"){
-    alert("Login to add items to the cart")
+      showAuthPopup("Login to add items to the cart", "orangered")
+    // alert("Login to add items to the cart")
     }else if(data.message=="Item already exists in the cart"){
-      alert(data.message)
+      // alert(data.message)
+      showAuthPopup(data.message, "rgb(13, 187, 13)")
       return;
     } else{
     console.log(data)
@@ -551,6 +585,73 @@ const fetchProducts=()=>{
        generateProductsList(res)
     })
 }
+
+
+
+// popup2 section
+// popup2 section
+// popup2 section
+
+function showAuthPopup(type, color) {
+  const authPopup = document.getElementById('authPopup');
+  const authMessage = document.getElementById('authMessage');
+
+  if (type === 'success') {
+    authMessage.textContent = 'Login Successful!';
+    authMessage.style.border = '1px solid rgb(13, 187, 13);';
+    authMessage.style.color = 'rgb(13, 187, 13);';
+  } else if (type === 'error') {
+    authMessage.textContent = 'Incorrect Password';
+    authMessage.style.border = '1px solid red';
+    authMessage.style.color = 'red';
+  }else{
+    authMessage.textContent=type
+    authMessage.style.border = `1px solid ${color}`;
+    authMessage.style.color = color;
+  }
+
+  authPopup.style.display = 'flex';
+  setTimeout(() => {
+    authPopup.style.display = 'none';
+  }, 1500);
+}
+
+const loadingPopup = document.getElementById('loadingPopup');
+loadingPopup.style.display = 'none';
+
+// Function to show loading popup
+function showLoadingPopup() {
+ loadingPopup.style.display = 'flex';
+  setTimeout(() => {
+    loadingPopup.style.display = 'none';
+  }, 4000);
+}
+
+// Function to show question prompt popup
+function showQuestionPopup(writtenText) {
+  const text = document.querySelector('#questionPopup p');
+  const questionPopup = document.getElementById('questionPopup');
+  questionPopup.style.display = 'flex';
+  text.textContent=writtenText
+}
+
+// Function to close question prompt popup
+function closeQuestionPopup() {
+  const questionPopup = document.getElementById('questionPopup');
+  questionPopup.style.display = 'none';
+}
+
+// Function to handle confirmation in question prompt popup
+function confirmAction() {
+  logout("http://127.0.0.1:8080/api/logout")
+  closeQuestionPopup(); 
+  setTimeout(()=>{
+    window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/index.html";
+  },500)
+}
+
+
+
 
 
 fetchUser("http://127.0.0.1:8080/api/user")

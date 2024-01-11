@@ -38,8 +38,10 @@ const products = [
 
     function generateProductsList(products) {
     const productsContainer = document.getElementById('products-container');
-
-    products.forEach(product => {
+    if(products.length===0){
+      productsContainer.innerHTML = `<div style="background:whitesmoke; padding:10px; text-align:center;width:100%; font-weight:bold; border-radius:7px; box-shadow:0 0 4px black">No products available</div>`
+    }else{
+      products.forEach(product => {
       productsContainer.innerHTML += `
         <div class="product" style="display: flex; flex-direction: column; align-items: center; justify-content:center">
         <img style="width:8em; height:8em" src="http://127.0.0.1:5500/christo_energy-lpg/images/2kg_gas.jpg">
@@ -54,6 +56,8 @@ const products = [
         </div>
       `;
     });
+    }
+    
   }
 
 

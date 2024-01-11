@@ -40,13 +40,15 @@
                     <h3>Dashboard</h3>
                 </a>
 
-                <a href="customers.html" >
+                <a href="customers.html" class="customers_">
                    <span class="material-icons-sharp">people_outline</span>
-                    <h3>Custormers</h3>
+                    <h3>Customers</h3>
+                    <span class="message-count">26</span>
                 </a>
-                <a href="orders.html">
+                <a href="orders.html" class="orders_">
                     <span class="material-icons-sharp">receipt_long</span>
                     <h3>Orders</h3>
+                    <span class="message-count">26</span>
                 </a>
                 
                 <!-- <a href="#">
@@ -63,7 +65,7 @@
                     <span class="material-icons-sharp">inventory</span>
                     <h3>Products</h3>
                 </a>
-                <a href="reports.html">
+                <a href="reports.html" class="reports_">
                     <span class="material-icons-sharp">report_gmailerrorred</span>
                     <h3>Reports</h3>
                     <span class="message-count">26</span>
@@ -330,6 +332,26 @@
 
             </div>
         </div>
+        <div class="popup-container2" id="authPopup">
+            <div class="popup2" id="authMessage">
+            </div>
+          </div>
+        <div class="popup-container2" id="loadingPopup">
+            <div class="popup2">
+              <div class="loader"></div>
+            </div>
+          </div>
+      
+          <div class="popup-container2" id="questionPopup">
+            <div class="popup2" id="questionMessage">
+              <p></p>
+              <div class="buttons">
+                <button onclick="closeQuestionPopup()" class="cancel">Cancel</button>
+              <button onclick="confirmAction()" class="ok">Confirm</button>
+              </div>
+              
+            </div>
+          </div>
 
         </div>
         <script src="admin.js"></script>

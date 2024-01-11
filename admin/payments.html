@@ -23,7 +23,7 @@
           <th>Amount</th>
           <th>Recipient</th>
           <th>Status</th>
-          <th>Method</th>
+          <!-- <th>Method</th> -->
         </tr>
       </thead>
       <tbody id="payments-body">
@@ -32,55 +32,6 @@
     </table>
   </div> 
 </div>
-  
-
-  <script>
-    const payments = [
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      { date: '2023-01-01', amount: 100, recipient: 'Company A', status: 'Completed', method: 'Credit Card' },
-      { date: '2023-02-05', amount: 150, recipient: 'Company B', status: 'Pending', method: 'PayPal' },
-      // Add more payment entries...
-    ];
-
-    function generatePaymentsTable(payments) {
-      const paymentsBody = document.getElementById('payments-body');
-
-      payments.forEach(payment => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${payment.date}</td>
-          <td>${payment.amount}</td>
-          <td>${payment.recipient}</td>
-          <td>${payment.status}</td>
-          <td>${payment.method}</td>
-        `;
-        paymentsBody.appendChild(row);
-      });
-    }
-
-    window.onload = function () {
-      generatePaymentsTable(payments);
-    };
-  </script>
-
+<script src="payments.js"></script>
 </body>
 </html>

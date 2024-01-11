@@ -36,6 +36,26 @@
         </div>
         <button type="submit">Add Product</button>
       </form>
+    </div> 
+    <div class="popup-container2" id="authPopup">
+      <div class="popup2" id="authMessage">
+      </div>
+    </div>
+  <div class="popup-container2" id="loadingPopup">
+      <div class="popup2">
+        <div class="loader"></div>
+      </div>
+    </div>
+
+    <div class="popup-container2" id="questionPopup">
+      <div class="popup2" id="questionMessage">
+        <p></p>
+        <div class="buttons">
+          <button onclick="closeQuestionPopup()" class="cancel">Cancel</button>
+        <button onclick="confirmAction()" class="ok">Confirm</button>
+        </div>
+        
+      </div>
     </div>
  </div>
  <script src="addProducts.js"></script>

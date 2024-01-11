@@ -55,16 +55,18 @@ button.addEventListener('click', () => {
     item.style.border = '1px solid #ccc';
 
     if (item.value === "") {
-      item.style.border = '2px solid red';
+      item.style.border = '1.5px solid red';
       invalidInputs.push(item.name);
+      showAuthPopup("Enter all details", "red")
     } else if (item.name === "Email" && (!item.value.includes('@') || !item.value.includes('.'))) {
-      item.style.border = '2px solid red';
-      alert("Please enter a valid email");
+      item.style.border = '1.5px solid red';
+      showAuthPopup("Please enter a valid email", "red")
       invalidInputs.push(item.name);
     }
   });
 
   if (invalidInputs.length === 0) {
+    showLoadingPopup()
     const orderType = localStorage.getItem("orderType"); 
 
     const userData = {
@@ -103,8 +105,6 @@ button.addEventListener('click', () => {
       })
       .catch((error) => console.error("Error fetching cart data:", error));
     }
-
-    alert("Order sent. Redirecting to paystack...");
     // setTimeout(() => {
     //   window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/";
     // }, 1000);
@@ -171,6 +171,7 @@ button.addEventListener('click', () => {
     })
       .then(response => {
         if (!response.ok) {
+          showAuthPopup("Please check connection and try again", "red")
           console.log(response)
           throw new Error('Network response was not ok');
         }
@@ -179,11 +180,19 @@ button.addEventListener('click', () => {
       .then((res)=>{
         console.log(res)
         if(res.status==true){
+          showAuthPopup("Success!. Redirecting to paystack", "rgb(13, 187, 13)")
+          // showAuthPopup("Success!. Redirecting to paystack", "black")
           localStorage.setItem("ref", res.data.reference)
           localStorage.setItem("access_code", res.data.access_code)
+         setTimeout(()=>{
           window.location.href=res.data.authorization_url
+         }, 500)
         }
         // sendOrder("http://127.0.0.1:8080/api/order", data);
+      })
+      .catch(error=>{
+        console.log(error)
+        showAuthPopup("Please check connection and try again", "red")
       })
   }
 
@@ -196,3 +205,36 @@ button.addEventListener('click', () => {
   
     return totalPrice;
   }
+
+  const loadingPopup = document.getElementById('loadingPopup');
+  loadingPopup.style.display = 'none'; 
+
+  function showAuthPopup(type, color) {
+    loadingPopup.style.display = 'none';  
+    const authPopup = document.getElementById('authPopup');
+    const authMessage = document.getElementById('authMessage');
+  
+    if (type === 'success') {
+      authMessage.textContent = 'Login Successful!';
+      authMessage.style.border = '1px solid rgb(13, 187, 13);';
+      authMessage.style.color = 'rgb(13, 187, 13);';
+    } else if (type === 'error') {
+      authMessage.textContent = 'Incorrect Password';
+      authMessage.style.border = '1px solid red';
+      authMessage.style.color = 'red';
+    }else{
+      authMessage.textContent=type
+      authMessage.style.border = '1px solid color';
+      authMessage.style.color = color;
+    }
+  
+    authPopup.style.display = 'flex';
+    setTimeout(() => {
+      authPopup.style.display = 'none';
+    }, 1500);
+  }
+ 
+function showLoadingPopup() {
+  loadingPopup.style.display = 'flex';
+ }
+  

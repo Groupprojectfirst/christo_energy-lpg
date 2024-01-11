@@ -1,13 +1,18 @@
 
 const decrease="decrease"
 const increase="increase"
+const loadingPopup = document.getElementById('loadingPopup');
+loadingPopup.style.display = 'none';
 // Function to render items in the cart
 function renderCart(arr) {
   cartItemsSection.innerHTML = '';
   let totalItems = 0;
   let totalPrice = 0;
 
-  arr.forEach((cartItem, index) => {
+  if(!arr || arr.length===0){
+    cartItemsSection.innerHTML = '<div style="padding:10px; width:100%; height:15em; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:bold; border-radius:7px; ">No cart items</div>';
+  }else{
+    arr.forEach((cartItem, index) => {
     const cartItemElem = document.createElement('div');
     cartItemElem.classList.add('cart-item');
     cartItemElem.innerHTML = `
@@ -31,6 +36,9 @@ function renderCart(arr) {
 
   totalItemsSpan.textContent = totalItems;
   totalPriceSpan.textContent = totalPrice.toFixed(2);
+  }
+
+
 }
 
 //fetching from carts
@@ -78,29 +86,20 @@ const items = [
   
   // Function to remove an item from the cart
   function removeItem(id, buyerId) {
-    var result= confirm("Are you sure you want to remove this item?");
-  if(result){
-    fetch(`http://127.0.0.1:8080/api/deleteitem/${id}`, {
-      method: "delete",
-      headers: {
-        'Content-Type': 'application/json', // Assuming JSON data
-      },
-      credentials:'include'
-    })
-      .then((res) => res.json())
-      .then((res) => {
-       fetchCartItems('http://127.0.0.1:8080/api/myCarts', buyerId)
-       });
-    window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/carts.html";
-  }else{
-    return
-  }
+  //   var result= confirm("Are you sure you want to remove this item?");
+  // if(result){
+    showQuestionPopup("Are you sure you want to remove this item?")
+    localStorage.setItem("ID_1", id)
+    localStorage.setItem("ID_2", buyerId)
+  // }else{
+  //   return
+  // }
   }
   
   // Function to update item quantity in the cart
  function updateCart(status, quantity, itemId, productId) {
   if(status=="decrease" && quantity==1){
-    alert("how farr")
+    return; 
   }else{
     fetch(`http://127.0.0.1:8080/api/updateitem`, {
       method: "POST",
@@ -126,7 +125,74 @@ const items = [
 
   const checkoutBtn=document.querySelector("#checkoutBtn")
   checkoutBtn.addEventListener('click', ()=>{
+    showLoadingPopup()
     localStorage.setItem("orderType", "NOT-REFILL")
-    window.open("http://127.0.0.1:5500/christo_energy-lpg/clientSide/checkout.html");
+    setTimeout(()=>{
+      window.location.href="http://127.0.0.1:5500/christo_energy-lpg/clientSide/checkout.html"
+    },2000)
   })
   
+
+  
+// Function to show question prompt popup
+function showQuestionPopup(writtenText) {
+  const text = document.querySelector('#questionPopup p');
+  const questionPopup = document.getElementById('questionPopup');
+  questionPopup.style.display = 'flex';
+  text.textContent=writtenText
+}
+
+// Function to close question prompt popup
+function closeQuestionPopup() {
+  const questionPopup = document.getElementById('questionPopup');
+  questionPopup.style.display = 'none';
+}
+
+// Function to handle delete cart item
+function confirmAction() {
+  fetch(`http://127.0.0.1:8080/api/deleteitem/${localStorage.getItem("ID_1")}`, {
+      method: "delete",
+      headers: {
+        'Content-Type': 'application/json', // Assuming JSON data
+      },
+      credentials:'include'
+    })
+      .then((res) => res.json())
+      .then((res) => {
+       fetchCartItems('http://127.0.0.1:8080/api/myCarts', localStorage.getItem("ID_2"))
+       });
+    window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/carts.html";
+}
+
+
+function showAuthPopup(type, color) {
+  const authPopup = document.getElementById('authPopup');
+  const authMessage = document.getElementById('authMessage');
+
+  if (type === 'success') {
+    authMessage.textContent = 'Login Successful!';
+    authMessage.style.border = '1px solid rgb(13, 187, 13);';
+    authMessage.style.color = 'rgb(13, 187, 13);';
+  } else if (type === 'error') {
+    authMessage.textContent = 'Incorrect Password';
+    authMessage.style.border = '1px solid red';
+    authMessage.style.color = 'red';
+  }else{
+    authMessage.textContent=type
+    authMessage.style.border = `1px solid ${color}`;
+    authMessage.style.color = color;
+  }
+
+  authPopup.style.display = 'flex';
+  setTimeout(() => {
+    authPopup.style.display = 'none';
+  }, 1500);
+}
+
+// Function to show loading popup
+function showLoadingPopup() {
+ loadingPopup.style.display = 'flex';
+  setTimeout(() => {
+    loadingPopup.style.display = 'none';
+  }, 4000);
+}

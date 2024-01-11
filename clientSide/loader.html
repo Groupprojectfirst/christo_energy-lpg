@@ -52,6 +52,7 @@
       .then((res) => {
         if (res.status === "payment success") {
           sendOrder("http://127.0.0.1:8080/api/order", allDetails);
+          createNewEvent("New order", "An order was successfully placed!")
           window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/successPage.html";
         } else {
           alert("Payment not completed");
@@ -99,6 +100,27 @@ const sendOrder = (url, orderData) => {
       window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/errorPage.html";
     });
 };
+
+const createNewEvent=(eventType, eventData)=>{
+  fetch("http://127.0.0.1:8080/api/newEvent", {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json', // Assuming JSON data
+    },
+    credentials:'include',
+    body: JSON.stringify({ event_type:eventType, event_data:eventData}),
+    })
+    .then(response => {
+    if (!response.ok) {
+    throw new Error('Network response was not ok');
+    }
+    return response.json();
+    })
+    .then((res)=>{
+      console.log(res)
+    })
+}
+
 
  </script>
 </body>

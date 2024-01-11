@@ -1,5 +1,81 @@
 /* Define your styles using SCSS here */
 /* ... Your existing styles ... */
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* all popups */
+/* all popups */
+/* all popups */
+/* all popups */
+
+.popup-container2 {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.popup2 {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  height: fit-content;
+  flex-direction: column;
+}
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+.popup-container2 .buttons{
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: space-between;
+}
+.popup-container2 .buttons button{
+   /* border: 1px solid black; */
+   margin: 10px;
+   padding: 7px;
+   border-radius: 10px;
+}
+.popup-container2 .buttons .ok{
+   border: 4px solid black;
+   color: black;
+}
+.popup-container2 .buttons .cancel{
+   border: 4px solid orangered;
+   color: orangered;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .cartsSection {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -93,18 +169,27 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 5em;
+  background:linear-gradient(45deg,white,#0a4686, white, #77aee9);
 
   h1 {
     font-size: 24px;
     // background-color: blue;
     width: 100%;
-    height: 4em;
+    // height: 4em;
     margin: 0px;
     // color: blue;
     margin-bottom: 20px;
+    margin-top: 5em;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: sans-serif;
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 6px;
   }
 
   .section {
@@ -113,9 +198,11 @@
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
     text-align: left;
     width: 90%;
+    // background-color: #9bc5fc;
 
     .section-title {
       display: flex;
@@ -142,7 +229,7 @@
           width: 99%;
           padding: 10px;
           font-size: 16px;
-          border: 1px solid #ccc;
+          border: 2px solid rgba(58, 58, 58, 0.089);
           border-radius: 5px;
           outline: none;
 
