@@ -317,6 +317,45 @@ body{
     align-items: center;
     background-color: #f4f4f4;
     color: #333;
+    width: 100%;
+    // border: 1px solid black;
+  .productsAdding{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fuelAdding{
+    margin-top: 3em;
+    width: 100%;
+    h1{
+      text-align: center;
+      color: rgb(255, 217, 0);
+    }
+    .fuels{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .content{
+        width: 100%;
+      }
+      table{
+        width: 80%;
+        border: 1px solid black;
+        max-width: 600px;
+        margin-top: 20px;
+        border: 1px solid black;
+        border-collapse: collapse;
+        th, td{
+          border: 1px solid black;
+          text-align: center;
+          padding: 10px;
+        }
+      }
+    }
+  }
 
     .page-heading {
         font-size: 2rem;

@@ -16,7 +16,7 @@ function renderCart(arr) {
     const cartItemElem = document.createElement('div');
     cartItemElem.classList.add('cart-item');
     cartItemElem.innerHTML = `
-      <img src="http://127.0.0.1:5500/christo_energy-lpg/images/2kg_gas.jpg" alt="${cartItem.itemName}" class="item-image">
+      <img src="${cartItem.imageLink}" alt="${cartItem.itemName}" class="item-image">
       <div class="item-details">
         <h3>${cartItem.itemName}</h3>
         <p>$${Number(cartItem.price).toFixed(2)}</p>

@@ -6,11 +6,11 @@ const foodMenu = document.querySelector('.food-menu-list');
 var obj = { status: false};
 const addItem=(item)=>{
   obj.status = true;
-  obj.imageLink ="http://127.0.0.1:5501/christo_energy-lpg/images/cylinder.jpg";
-  obj.itemName = item.product_name
-  obj.price = item.product_price
+  obj.imageLink =item.images[0].image_path
+  obj.itemName = item.product.product_name
+  obj.price = item.product.product_price
   obj.quantity=1
-  obj.productId=item.product_id
+  obj.productId=item.product.product_id
   obj.buyerId=localStorage.getItem("userId")
   
   saveItemToCart("http://127.0.0.1:8080/api/addToCart", obj )
@@ -59,16 +59,17 @@ const saveItemToCart=(url, dataToSend)=>{
 
 const generateProductsList=(array)=>{
   array.forEach((item, i)=>{
-    foodMenu.innerHTML +=`
+    console.log(item.product.status)
+     foodMenu.innerHTML +=`
     <li>
       <div class="food-menu-card">
         <div class="card-banner">
           <img
-            src="http://127.0.0.1:5500/christo_energy-lpg/images/2kg_gas.jpg"
+            src="${item.images[0].image_path}"
             width="300"
             height="300"
             loading="lazy"
-            alt="${item.alt}"
+            alt="${item.product.alt}"
             class="w-100"
           />
           <div class="badge">15</div>
@@ -82,16 +83,16 @@ const generateProductsList=(array)=>{
               <ion-icon name="star"></ion-icon>
             </div>
           </div>
-          <h3 class="h3 card-title">${item.product_name}</h3>
+          <h3 class="h3 card-title">${item.product.product_name}</h3>
           <div class="price-wrapper">
             <p class="price-text">Price:</p>
-            &#x20A6;<data class="price" value="${item.product_price}">${Number(item.product_price).toFixed()}</data>
-            <del class="del">&#x20A6; ${Number(Number(item.product_price)* 0.01).toFixed()}</del>
+            &#x20A6;<data class="price" value="${item.product.product_price}">${Number(item.product.product_price).toFixed()}</data>
+            <del class="del">&#x20A6; ${Number(Number(item.product.product_price)* 0.01).toFixed()}</del>
           </div>
         </div>
       </div>
     </li>
-  `
+  `  
   })
 
 }
@@ -105,7 +106,7 @@ const fetchProducts=()=>{
     .then((res) => res.json())
     .then((res) => {
        console.log(res)
-       generateProductsList(res)
+       generateProductsList(res.Goods)
     })
 }
 

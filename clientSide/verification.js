@@ -1,7 +1,9 @@
 const code=document.querySelector("#verification-code")
 const button=document.querySelector("button")
 
-button.addEventListener("click", ()=>{
+button.addEventListener("click", (e)=>{
+  e.preventDefault()
+  console.log(code.value)
     if(code.value==""){
         showAuthPopup("Input the code sent to your email", "red")
         return;
@@ -19,7 +21,7 @@ function sendData(url, dataToSend) {
         'Content-Type': 'application/json', // Assuming JSON data
       },
       credentials:'include',
-      body: JSON.stringify(dataToSend),
+      body: JSON.stringify({code:dataToSend}),
     })
       .then(response => {
         if (!response.ok) {

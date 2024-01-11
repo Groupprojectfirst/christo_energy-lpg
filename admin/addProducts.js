@@ -70,8 +70,8 @@ var imageArray = [];
 
 product_image.addEventListener("change", (e) => {
     imageArray=[]
-    if (e.target.files.length > 4) {
-        showAuthPopup("you can only select 4 images", "red")
+    if (e.target.files.length > 1) {
+        showAuthPopup("you can only select 1 image", "red")
        return;
     } else {
         for (let i = 0; i < e.target.files.length; i++) {

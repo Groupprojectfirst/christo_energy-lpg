@@ -375,7 +375,64 @@ body {
           align-items: center;
   background-color: #f4f4f4;
   color: #333;
+  width: 100%;
   /* Responsive styles */
+}
+
+.postProductCont .productsAdding {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.postProductCont .fuelAdding {
+  margin-top: 3em;
+  width: 100%;
+}
+
+.postProductCont .fuelAdding h1 {
+  text-align: center;
+  color: #ffd900;
+}
+
+.postProductCont .fuelAdding .fuels {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.postProductCont .fuelAdding .fuels .content {
+  width: 100%;
+}
+
+.postProductCont .fuelAdding .fuels table {
+  width: 80%;
+  border: 1px solid black;
+  max-width: 600px;
+  margin-top: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.postProductCont .fuelAdding .fuels table th, .postProductCont .fuelAdding .fuels table td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
 }
 
 .postProductCont .page-heading {

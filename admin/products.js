@@ -22,7 +22,7 @@ const fetchAdmin = (url) => {
             .then((res) => res.json())
             .then((res) => {
                console.log(res)
-               generateProductsList(res)
+               generateProductsList(res.Goods)
             })
          }
       });
@@ -38,19 +38,19 @@ const products = [
 
     function generateProductsList(products) {
     const productsContainer = document.getElementById('products-container');
-    if(products.length===0){
+    if(!products || products.length===0){
       productsContainer.innerHTML = `<div style="background:whitesmoke; padding:10px; text-align:center;width:100%; font-weight:bold; border-radius:7px; box-shadow:0 0 4px black">No products available</div>`
     }else{
       products.forEach(product => {
       productsContainer.innerHTML += `
         <div class="product" style="display: flex; flex-direction: column; align-items: center; justify-content:center">
-        <img style="width:8em; height:8em" src="http://127.0.0.1:5500/christo_energy-lpg/images/2kg_gas.jpg">
-          <h2>${product.product_name}</h2>
-          <p>Price: ${product.product_price}</p>
-          <p>Quantity available: ${product.product_quantity}</p>
+        <img style="width:8em; height:8em" src="${product.images[0].image_path}">
+          <h2>${product.product.product_name}</h2>
+          <p>Price: ${product.product.product_price}</p>
+          <p>Quantity available: ${product.product.product_quantity}</p>
           <div class="product-buttons">
-            <button style="background:red; display: ${product.status==='1'? 'block':'none'}" class="add" onclick=removeProductsFromHomePage('${product.product_id}')>Remove from Homepage</button>
-            <button style="background:blue; display: ${product.status==='0'? 'block':'none'}" class="add" onclick=addProductsToHomePage('${product.product_id}')>Add to Homepage</button>
+            <button style="background:red; display: ${product.product.status==='1'? 'block':'none'}" class="add" onclick=removeProductsFromHomePage('${product.product.product_id}')>Remove from Homepage</button>
+            <button style="background:blue; display: ${product.product.status==='0'? 'block':'none'}" class="add" onclick=addProductsToHomePage('${product.product.product_id}')>Add to Homepage</button>
             <button class="remove" onclick=deleteProduct('${product.product_id}')>Delete Product</button>
           </div>
         </div>

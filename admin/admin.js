@@ -68,9 +68,9 @@ const fetchAdmin = (url) => {
   const customersCount=document.querySelector(".sidebar .customers_ .message-count")
   const ordersCount=document.querySelector(".sidebar .orders_ .message-count")
 
-//   reportsCount.style.display="none"
-//  customersCount.style.display="none"
-//  ordersCount.style.display="none"
+  reportsCount.style.display="none"
+ customersCount.style.display="none"
+ ordersCount.style.display="none"
 
   console.log(reportsCount, customersCount, ordersCount)
 
@@ -111,52 +111,6 @@ function confirmAction() {
   window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/admin";
 }
 
-const fetchCustomers=()=>{
-  var allArr=[]
-  fetch("http://127.0.0.1:8080/api/allBuyers", {
-            method: "GET",
-            credentials: "include"
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              //  console.log(res) 
-              res.map((item, i)=>{
-               if(item.seen=="NOT-SEEN"){
-                customersCount.style.display=""
-                allArr.push(item)
-               }else{
-                customersCount.style.display="none"
-                return;
-               }
-              })
-              // console.log(allArr)
-              customersCount.textContent=allArr.length
-      })
-}
-const fetchOrders=()=>{
-  var allArr=[]
-  fetch("http://127.0.0.1:8080/api/fetchAllOrders", {
-    method: "GET",
-    credentials: "include"
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      //  console.log(res)
-      res.map((item, i)=>{
-        if(item.seen=="NOT-SEEN"){
-          ordersCount.style.display=""
-         allArr.push(item)
-        }else{
-          ordersCount.style.display="none"
-         return;
-        }
-       })
-      //  console.log(allArr)
-       ordersCount.textContent=allArr.length
-    })
-}
-
-
 const fetchReports = () => {
   var allArr = [];
   fetch("http://127.0.0.1:8080/api/getAllEvents", {
@@ -175,6 +129,40 @@ const fetchReports = () => {
     console.error('There was a problem fetching the reports:', error);
   });
 };
+
+const fetchOrders=()=>{
+  var allArr=[]
+  fetch("http://127.0.0.1:8080/api/fetchAllOrders", {
+    method: "GET",
+    credentials: "include"
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      //  console.log(res)
+      allArr = res.filter(item => item.seen === "NOT-SEEN");
+      console.log(allArr);
+      ordersCount.textContent = allArr.length;
+      ordersCount.style.display = allArr.length > 0 ? "" : "none";
+      //  console.log(allArr)
+    })
+}
+
+const fetchCustomers=()=>{
+  var allArr=[]
+  fetch("http://127.0.0.1:8080/api/allBuyers", {
+            method: "GET",
+            credentials: "include"
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              //  console.log(res) 
+              allArr = res.filter(item => item.seen === "NOT-SEEN");
+              console.log(allArr);
+              customersCount.textContent = allArr.length;
+              customersCount.style.display = allArr.length > 0 ? "" : "none";
+              // console.log(allArr)
+      })
+}
 
   fetchAdmin("http://127.0.0.1:8080/api/adminside")
 
