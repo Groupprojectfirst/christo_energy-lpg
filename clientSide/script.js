@@ -356,16 +356,16 @@ submitDetails.addEventListener("click", (e) => {
     item.style.border = '1px solid #ccc';
 
     if (item.value === "") {
-      item.style.border = '2px solid red';
+      item.style.border = '1px solid red';
       invalidInputs.push(item.name);
       showAuthPopup("fill in all details", "red")
     } else if (item.name === "email_address" && (!item.value.includes('@') || !item.value.includes('.'))) {
-      item.style.border = '2px solid red';
+      item.style.border = '1px solid red';
       showAuthPopup("Please enter a valid email", "red")
       invalidInputs.push(item.name);
     }
     else if (item.name === "password" && (item.value.length <= 6)) {
-      item.style.border = '2px solid red';
+      item.style.border = '1px solid red';
       showAuthPopup("Password must be up to 7 chars", "red")
       invalidInputs.push(item.name);
     }
@@ -392,6 +392,7 @@ submitDetails.addEventListener("click", (e) => {
 
 
 function sendData(url, dataToSend) {
+  showLoadingPopup()
   fetch(url, {
     method: 'POST',
     headers: {
@@ -412,8 +413,9 @@ function sendData(url, dataToSend) {
         showAuthPopup(data.message, "red")
       }else{
         // console.log('Received data:', data);
+        loadingPopup.style.display="none"
       showAuthPopup("Signup successful", "rgb(13, 187, 13)")
-
+  
       setTimeout(()=>{
         createNewEvent("New user", "You have a new user today!")
         window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/verificationPage.html";
@@ -622,9 +624,9 @@ loadingPopup.style.display = 'none';
 // Function to show loading popup
 function showLoadingPopup() {
  loadingPopup.style.display = 'flex';
-  setTimeout(() => {
-    loadingPopup.style.display = 'none';
-  }, 4000);
+  // setTimeout(() => {
+  //   loadingPopup.style.display = 'none';
+  // }, 4000);
 }
 
 // Function to show question prompt popup
@@ -649,6 +651,34 @@ function confirmAction() {
     window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/index.html";
   },500)
 }
+
+
+function generateFuelList(array) {;
+  const container = document.querySelector('.sec .con .inner #prod');
+
+  const htmlContent = `
+          ${array.map(fuel => `
+          <option value="${fuel.fuel}" data-amount="${fuel.amount_per_liter}">${fuel.fuel}</option>`).join('')}
+  `;
+
+  container.innerHTML = htmlContent;
+}
+
+const fetchFuels=()=>{
+  fetch("http://127.0.0.1:8080/api/allfuels",{
+    method:"GET",
+    credentials:'include'
+  })
+  .then((res)=>{
+   return res.json()
+  })
+  .then((res)=>{
+    generateFuelList(res)
+  })
+}
+
+fetchFuels()
+
 
 
 

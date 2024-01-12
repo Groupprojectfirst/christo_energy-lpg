@@ -116,7 +116,6 @@
 }
 
 body {
-  padding-top: 7em;
   background-color: #f4f4f4;
 }
 
@@ -137,6 +136,7 @@ body {
   margin-bottom: 15px;
   position: fixed;
   top: 0px;
+  z-index: 2;
 }
 
 .header img {
@@ -186,6 +186,7 @@ body {
   max-width: 800px;
   border-collapse: collapse;
   background-color: #fff;
+  margin-top: 7em;
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -229,6 +230,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 10px;
+  margin-top: 7em;
 }
 
 .ordersCont .order {
@@ -289,6 +291,7 @@ body {
   -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 20px;
+  margin-top: 7em;
 }
 
 .productsCont .product {
@@ -396,11 +399,20 @@ body {
 .postProductCont .fuelAdding {
   margin-top: 3em;
   width: 100%;
+  background-color: white;
+  width: 80%;
+  -webkit-box-shadow: 0 0 5px #858585;
+          box-shadow: 0 0 5px #858585;
+  margin-bottom: 2em;
+  padding: 20px;
+  max-width: 600px;
+  border-radius: 5px;
+  overflow: auto;
 }
 
 .postProductCont .fuelAdding h1 {
   text-align: center;
-  color: #ffd900;
+  color: black;
 }
 
 .postProductCont .fuelAdding .fuels {
@@ -414,14 +426,29 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .postProductCont .fuelAdding .fuels .content {
   width: 100%;
 }
 
+.postProductCont .fuelAdding .fuels button {
+  margin: 10px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 7px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 .postProductCont .fuelAdding .fuels table {
-  width: 80%;
+  width: 90%;
   border: 1px solid black;
   max-width: 600px;
   margin-top: 20px;
@@ -435,9 +462,109 @@ body {
   padding: 10px;
 }
 
+.postProductCont .fuelPopupCont, .postProductCont .fuelPopupCont2 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 50;
+  left: 50;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 3;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.178);
+}
+
+.postProductCont .fuelPopupCont .fuelPopup, .postProductCont .fuelPopupCont2 .fuelPopup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  background-color: white;
+  margin: 10px;
+}
+
+.postProductCont .fuelPopupCont .fuelPopup h4, .postProductCont .fuelPopupCont2 .fuelPopup h4 {
+  margin: 20px;
+}
+
+.postProductCont .fuelPopupCont .fuelPopup .details, .postProductCont .fuelPopupCont2 .fuelPopup .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+.postProductCont .fuelPopupCont .fuelPopup .details button, .postProductCont .fuelPopupCont2 .fuelPopup .details button {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.postProductCont .fuelPopupCont .fuelPopup .details .closeBut, .postProductCont .fuelPopupCont2 .fuelPopup .details .closeBut {
+  background-color: orangered;
+}
+
+.postProductCont .fuelPopupCont .fuelPopup select, .postProductCont .fuelPopupCont .fuelPopup option, .postProductCont .fuelPopupCont .fuelPopup .fuel_amt, .postProductCont .fuelPopupCont .fuelPopup .enterNew, .postProductCont .fuelPopupCont2 .fuelPopup select, .postProductCont .fuelPopupCont2 .fuelPopup option, .postProductCont .fuelPopupCont2 .fuelPopup .fuel_amt, .postProductCont .fuelPopupCont2 .fuelPopup .enterNew {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.postProductCont .fuelPopupCont {
+  display: none;
+}
+
+.postProductCont .fuelPopupCont2 {
+  display: none;
+}
+
+.postProductCont .wrapper {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.11);
+  position: fixed;
+  z-index: 2;
+  display: none;
+}
+
 .postProductCont .page-heading {
   font-size: 2rem;
   margin: 20px 0;
+  margin-top: 6em;
 }
 
 .postProductCont .form-container {
@@ -512,6 +639,7 @@ body {
 .paymentCont .payments-container {
   width: 80%;
   max-width: 800px;
+  margin-top: 7em;
 }
 
 .paymentCont .page-heading {
@@ -577,6 +705,7 @@ body {
   width: 90%;
   font-size: 1.2rem;
   color: #666;
+  margin-top: 7em;
 }
 
 .reportsCont .notification span {

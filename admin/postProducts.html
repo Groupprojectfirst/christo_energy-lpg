@@ -48,7 +48,7 @@
       </div>
     </div>
   </div>
-  <div class="fuelAdding">
+  <div id="fuelTableContainer" class="fuelAdding">
     <h1>Add/set fuel prices</h1>
     <div class="content">
       <div class="fuels">
@@ -57,35 +57,59 @@
             <th>Name</th>
             <th>Price per liter</th>
             <th>Last updated</th>
+            <th>Set availability</th>
           </tr>
-          <tr>
-            <td>Petrol</td>
-            <td>Price per liter</td>
-            <td>Last updated</td>
-            <td><button>Edit</button></td>
-          </tr>
-          <tr>
-            <td>Diesel</td>
-            <td>Price per liter</td>
-            <td>Last updated</td>
-            <td><button>Edit</button></td>
-          </tr>
-          <tr>
-            <td>Kerosene</td>
-            <td>Price per liter</td>
-            <td>Last updated</td>
-            <td><button>Edit</button></td>
-          </tr>
-          <tr>
-            <td>Cooking gas</td>
-            <td>Price per liter</td>
-            <td>Last updated</td>
-            <td><button>Edit</button></td>
-          </tr>
+         
         </table>
+          <div class="buttons">
+             <button class="addNewFuel">Add new fuel</button>
+        <button class="editFuel">Make edits</button>
+          </div>
+       
       </div>
     </div>
   </div>
+
+  <div class="fuelPopupCont">
+    <div class="fuelPopup">
+    <h4>Edit fuel price / availability</h4>
+    <div class="details">
+      <select name="chooseFuel" id="chooseFuel">
+        <option value="">--choose fuel--</option>
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Kerosine">Kerosine</option>
+        <option value="cooking gas">Cooking gas</option>
+      </select>
+      <input type="number" class="fuel_amt" placeholder="set amount per liter">
+      <select name="set_availability" id="set_availability">
+       <option value="available">Available</option>
+        <option value="Not available">Not available</option>
+      </select>
+      <div class="buttons">
+        <button class="closeBut">Close</button>
+      <button class="enterButton">OK</button>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+  <div class="fuelPopupCont2">
+    <div class="fuelPopup">
+    <h4>Add new fuel</h4>
+    <div class="details">
+      <input type="text" class="enterNew" placeholder="Enter new fuel product...">
+      <input type="number" class="fuel_amt" placeholder="Amount per liter">
+      <div class="buttons">
+          <button class="closeBut">Close</button>
+      <button class="enterButton">ADD</button>
+      </div>
+    
+    </div>
+  </div>
+  </div>
+  
+  <div class="wrapper"></div>
     <div class="popup-container2" id="questionPopup">
       <div class="popup2" id="questionMessage">
         <p></p>

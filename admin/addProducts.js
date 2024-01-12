@@ -20,6 +20,32 @@ const fetchAdmin = (url) => {
       });
   };
 
+  
+  const fuelsData = [
+    { name: "Petrol", price: 700, availability: "Available" },
+    { name: "Diesel", price: 700, availability: "Available" },
+    { name: "Kerosene", price: 700, availability: "Available" },
+    { name: "Cooking gas", price: 700, availability: "Available" },
+  ];
+
+  
+  const fetchFuels=()=>{
+    fetch("http://127.0.0.1:8080/api/allfuels",{
+      method:"GET",
+      credentials:'include'
+    })
+    .then((res)=>{
+     return res.json()
+    })
+    .then((res)=>{
+      console.log(res)
+      generateFuelTable(res)
+    })
+  }
+
+  fetchFuels()
+
+
 
   function showAuthPopup(type, color) {
     const authPopup = document.getElementById('authPopup');
@@ -136,7 +162,7 @@ const product = {
         return response.json();
       })
       .then(data => {
-        if(data.message=="login first"){
+        if(data.message=="login first"){ 
         // alert("login first")
         setTimeout(()=>{
             window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/";
@@ -178,4 +204,161 @@ const product = {
   
     return id;
   }
+
+ 
+  function generateFuelTable(array) {
+    const container = document.querySelector("#fuelTableContainer table");
+
+    const htmlContent = `
+            ${array.map(fuel => `
+              <tr>
+                <td>${fuel.fuel}</td>
+                <td>${fuel.amount_per_liter}</td>
+                <td>${new Date(fuel.updatedAt).toISOString().split('T')[0]}</td>
+                <td>${fuel.availability}</td>
+              </tr>`).join('')}
+    `;
+
+    container.innerHTML = htmlContent;
+  }
+
+
+   // handling popups
+  // handling popups
+  const editPopup=document.querySelector(".postProductCont .fuelPopupCont")
+  const addNewPopup=document.querySelector(".postProductCont .fuelPopupCont2")
+  const wrapper=document.querySelector(".postProductCont .wrapper")
   
+  const okClose1=document.querySelector(".postProductCont .fuelPopupCont .fuelPopup .closeBut")
+  const okClose2=document.querySelector(".postProductCont .fuelPopupCont2 .fuelPopup .closeBut")
+ 
+ 
+  const enterButton1=document.querySelector(".postProductCont .fuelPopupCont .fuelPopup .enterButton")
+  const enterButton2=document.querySelector(".postProductCont .fuelPopupCont2 .fuelPopup .enterButton")
+
+
+  const addFuel=document.querySelector(".postProductCont .buttons .addNewFuel")
+  const editFuel=document.querySelector(".postProductCont .buttons .editFuel")
+
+  wrapper.style.display="none"
+
+  addFuel.addEventListener("click", ()=>{
+    addNewPopup.style.display="flex"
+    // wrapper.style.display="flex"
+  })
+
+  editFuel.addEventListener("click", ()=>{
+    editPopup.style.display="flex"
+    // wrapper.style.display="flex"
+  })
+  
+  okClose1.addEventListener("click", ()=>{
+    editPopup.style.display="none"
+    // wrapper.style.display="none"
+  })
+  okClose2.addEventListener("click", ()=>{
+    addNewPopup.style.display="none"
+    // wrapper.style.display="none"
+  })
+  // wrapper.addEventListener("click", ()=>{
+  //   addNewPopup.style.display="none"
+  //   editPopup.style.display="none"
+  //   // wrapper.style.display="none"
+  // })
+
+
+  //makeFuelEdits
+  enterButton1.addEventListener('click', (e)=>{
+   e.preventDefault()
+     const fuelName=document.querySelector(".fuelPopupCont .fuelPopup #chooseFuel").value
+     const amount=document.querySelector(".fuelPopupCont .fuelPopup .fuel_amt").value
+     const availability=document.querySelector(".fuelPopupCont .fuelPopup #set_availability").value
+   
+     if(fuelName=="" || amount=="" || availability==""){
+      return;
+     }else{
+      editFuelHandler(fuelName, availability, amount)
+     }
+  })
+
+  //add new fuel
+  enterButton2.addEventListener('click', (e)=>{
+   e.preventDefault()
+     const fuelName=document.querySelector(".fuelPopupCont2 .fuelPopup .enterNew").value
+     const amount=document.querySelector(".fuelPopupCont2 .fuelPopup .fuel_amt").value
+     
+     if(fuelName=="" || amount=="" ){
+      return;
+     }else{
+      addFuelHandler(fuelName, amount)
+     }
+  })
+
+
+
+  
+function addFuelHandler( fuel,amount_per_liter) {
+  fetch("http://127.0.0.1:8080/api/postFuel", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Assuming JSON data
+    },
+    credentials:'include',
+    body: JSON.stringify({
+      fuel:fuel,
+      amount_per_liter:amount_per_liter
+    })
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+     if(data.message=="success"){
+      alert("Added!")
+      setTimeout(()=>{
+        window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/admin/postProducts.html";
+      }, 1000)   
+     }else{
+      console.log(data)
+     }
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+
+  const editFuelHandler=(name, availability, price)=>{
+    fetch("http://127.0.0.1:8080/api/makeFuelUpdates", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json', // Assuming JSON data
+      },
+      credentials:'include',
+      body: JSON.stringify({name:name,
+         new_amount_per_liter:price,
+          availability:availability})
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if(data.message=="fuel updated"){
+          alert("Updated!")
+          setTimeout(()=>{
+            window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/admin/postProducts.html";
+          }, 1000)   
+         }else{
+          console.log(data)
+         }
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }
