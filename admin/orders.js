@@ -22,7 +22,7 @@ const fetchAdmin = (url) => {
             .then((res) => res.json())
             .then((res) => {
               //  console.log(res)
-               generateOrdersList(res);
+               generateOrdersList(sortByTime(res));
                updateSeen("http://127.0.0.1:8080/api/updateOrdersSeen")
             })
          }
@@ -75,12 +75,12 @@ const orders = [
 // Function to generate orders list HTML
 function generateOrdersList(orders) {
   const ordersContainer = document.getElementById('orders-container');
-  const pendingOrders = orders.filter(order => order.status !== "DELIVERED");
-
+  console.log(orders)
   if(orders.length===0){
    const ordersListHTML=`<div style="background:whitesmoke; padding:10px; text-align:center; font-weight:bold; border-radius:7px; box-shadow:0 0 4px black">No pending orders</div>`
    ordersContainer.innerHTML = ordersListHTML;
   }else{
+    const pendingOrders = orders.filter(order => order.status !== "DELIVERED");
     if (pendingOrders.length === 0) {
       const ordersListHTML = `
         <div style="background:whitesmoke; padding:10px; text-align:center; font-weight:bold; border-radius:7px; box-shadow:0 0 4px black">
@@ -93,6 +93,7 @@ function generateOrdersList(orders) {
         if (order.status === "DELIVERED") {
           return ''; // If the order is delivered, return an empty string
         } else {
+          console.log(order)
           return `
             <div class="order" style="border:2px solid ${order.transactionType === "REFILL" ? 'orange' : "black"}">
               <p style="background:orange;width:fit-content;color:white;font-weight:bold; border-radius:4px; padding:10px; display: ${order.transactionType === "REFILL" ? 'block' : "none"}">Refill</p>
@@ -102,9 +103,9 @@ function generateOrdersList(orders) {
               <p style="display: ${order.transactionType === "REFILL" ? 'block' : "none"}">Fuel type: ${order.fuelType}</p>
               <p style="display: ${order.transactionType === "REFILL" ? 'block' : "none"}">Liters: ${order.fuelQuantity} liters</p>
               <p style="display: ${order.transactionType === "REFILL" ? 'none' : "block"}">Quantity: ${order.itemQuantity}</p>
-              <p style="display: ${order.transactionType === "REFILL" ? 'block' : "none"}">Amount paid: ${Number(order.amountPaid) * Number(order.fuelQuantity)}</p>
+              <p style="display: ${order.transactionType === "REFILL" ? 'block' : "none"}">Amount paid: &#x20A6;${addCommasToNumber(Number(order.amountPaid))}</p>
               <p>Address: ${order.address}</p>
-              <p style="display: ${order.transactionType === "REFILL" ? 'none' : "block"}">Amount: ${Number(order.amountPaid) * Number(order.itemQuantity)}</p>
+              <p style="display: ${order.transactionType === "REFILL" ? 'none' : "block"}">Amount:&#x20A6; ${addCommasToNumber(Number(order.amountPaid) * Number(order.itemQuantity))}</p>
               <p>Buyer: ${order.buyer}</p>
               <p>Phone number: ${order.phone}</p>
               <button onclick="orderDelivered('${order.orderId}')" style="padding: 10px; background: green; margin-top:10px; border: 1px solid white; color: white; font-weight: bold; border-radius: 4px; box-shadow: 0 0 3px black">Order delivered</button>
@@ -219,6 +220,32 @@ function showAuthPopup(type, color) {
   setTimeout(() => {
     authPopup.style.display = 'none';
   }, 1500);
+}
+
+function sortByTime(arrayOfObjects) {
+  arrayOfObjects.sort((a, b) => {
+     return new Date(b.createdAt) - new Date(a.createdAt);
+   });
+ 
+   return arrayOfObjects;
+ }
+
+
+ 
+function addCommasToNumber(num) {
+  // Convert the number to a string
+  let numString = num.toString();
+
+  // Split the integer and decimal parts
+  let parts = numString.split('.');
+
+  // Add commas to the integer part
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Join the integer and decimal parts back together
+  let result = parts.join('.');
+
+  return result;
 }
 
 

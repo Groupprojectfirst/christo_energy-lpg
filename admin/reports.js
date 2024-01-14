@@ -21,9 +21,11 @@ const fetchAdmin = (url) => {
           })
             .then((res) => res.json())
             .then((res) => {
-               renderNotifications(res)
+               renderNotifications(sortByTime(res))
+              //  renderNotifications(res)
+              //  console.log(sortByTime(res))
                updateSeen('http://127.0.0.1:8080/api/updateEventsSeen')
-               console.log(res)
+              //  console.log(res)
             })
          }
       });
@@ -77,22 +79,22 @@ const fetchAdmin = (url) => {
       let color = '';
       switch (notification.event_type) {
         case 'New user':
-          color = 'orange';
+          color = 'rgb(0, 162, 255)';    //blue
           break;
         case 'New visitor':
-          color = 'yellow';
+          color = ' rgb(255, 196, 0)';    //orange
           break;
         case 'New delivery':
           color = 'black';
           break;
         case 'New order':
-          color = 'green';
+          color = 'yellowgreen';
           break;
         default:
           color = 'gray'; // Default color for other types
           break;
       }
-      notificationDiv.innerHTML += `<span style="background:${color};color:white;" class="yourClassName">${notification.event_data}</span><br>`;
+      notificationDiv.innerHTML += `<span style="background:${color};color:white;" class="yourClassName">${notification.event_data}  <b style="font-size:14px; float:right; background:black; border-radius:3px; padding:3px">${new Date(notification.event_time).toISOString().split('T')[0]}</b></span><br>`;
     });
     }
     
@@ -124,6 +126,14 @@ const fetchAdmin = (url) => {
   }
 
   
+  function sortByTime(arrayOfObjects) {
+   arrayOfObjects.sort((a, b) => {
+      return new Date(b.event_time) - new Date(a.event_time);
+    });
+  
+    return arrayOfObjects;
+  }
+
 
 
 

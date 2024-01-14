@@ -11,11 +11,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: url(../images/6kg_gas.jpg), linear-gradient(45deg, rgb(252, 204, 117),rgb(252, 204, 117), black);
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   
   .container {
-    background-color: whitesmoke;
+    background-color: rgba(255, 255, 255, 0.342);
     padding: 20px;
     border-radius: 8px;
     width: 20em;
@@ -28,7 +31,9 @@ body {
     align-items: center;
     justify-content: center;
     /* border: 1px solid black; */
-    background:white;
+    /* background:orange; */
+    color: white;
+    padding: 10px;
   }
   
   h2 {
@@ -50,15 +55,19 @@ body {
     /* width: 100%; */
     border-radius: 5px;
     border: 1px solid #ccc;
+    background: transparent;
+    color: white;
+    font-weight: bold;
   }
   
   button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #052446;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 10px;
     transition: background-color 0.3s ease;
   }
   

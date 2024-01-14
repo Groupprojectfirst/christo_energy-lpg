@@ -181,6 +181,12 @@ body {
   background-color: #f4f4f4;
 }
 
+@media (max-width: 480px) {
+  .customersCont .header h2 {
+    font-size: 25px;
+  }
+}
+
 .customersCont .customer-table {
   width: 80%;
   max-width: 800px;
@@ -196,6 +202,12 @@ body {
   text-align: left;
   cursor: pointer;
   border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 480px) {
+  .customersCont .customer-table th, .customersCont .customer-table td {
+    font-size: 15px;
+  }
 }
 
 .customersCont .customer-table th {
@@ -223,6 +235,12 @@ body {
           flex-direction: column;
   background-color: #f4f4f4;
   /* Responsive styles */
+}
+
+@media (max-width: 480px) {
+  .ordersCont .header h2 {
+    font-size: 25px;
+  }
 }
 
 .ordersCont .orders-container {
@@ -258,6 +276,12 @@ body {
   .ordersCont .order {
     padding: 15px;
   }
+  .ordersCont .order h2 {
+    font-size: 18px;
+  }
+  .ordersCont .order p {
+    font-size: 15px;
+  }
 }
 
 .productsCont {
@@ -276,6 +300,12 @@ body {
           align-items: center;
   background-color: #f4f4f4;
   color: #333;
+}
+
+@media (max-width: 480px) {
+  .productsCont .header h2 {
+    font-size: 25px;
+  }
 }
 
 .productsCont .page-heading {
@@ -305,6 +335,15 @@ body {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .productsCont .product h2 {
+    font-size: 18px;
+  }
+  .productsCont .product p {
+    font-size: 15px;
+  }
 }
 
 .productsCont .product:hover .product-buttons {
@@ -380,6 +419,12 @@ body {
   color: #333;
   width: 100%;
   /* Responsive styles */
+}
+
+@media (max-width: 480px) {
+  .postProductCont .header h2 {
+    font-size: 25px;
+  }
 }
 
 .postProductCont .productsAdding {
@@ -636,6 +681,12 @@ body {
   color: #333;
 }
 
+@media (max-width: 480px) {
+  .paymentCont .header h2 {
+    font-size: 25px;
+  }
+}
+
 .paymentCont .payments-container {
   width: 80%;
   max-width: 800px;
@@ -695,6 +746,12 @@ body {
   width: 100%;
 }
 
+@media (max-width: 480px) {
+  .reportsCont .header h2 {
+    font-size: 25px;
+  }
+}
+
 .reportsCont h1 {
   margin: 15px;
 }
@@ -719,5 +776,18 @@ body {
   cursor: pointer;
   -webkit-box-shadow: 0 0 5px black;
           box-shadow: 0 0 5px black;
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .reportsCont .notification span {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h2 {
+    font-size: 25px;
+  }
 }
 /*# sourceMappingURL=styles2.css.map */

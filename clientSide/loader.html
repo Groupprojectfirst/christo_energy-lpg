@@ -52,7 +52,7 @@
       .then((res) => {
         if (res.status === "payment success") {
           sendOrder("http://127.0.0.1:8080/api/order", allDetails);
-          createNewEvent("New order", "An order was successfully placed!")
+          createNewEvent("New order", `${data.buyer} just placed an order for ${data.transactionType}!`)
           window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/successPage.html";
         } else {
           alert("Payment not completed");

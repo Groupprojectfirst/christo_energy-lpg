@@ -46,12 +46,12 @@ const products = [
         <div class="product" style="display: flex; flex-direction: column; align-items: center; justify-content:center">
         <img style="width:8em; height:8em" src="${product.images[0].image_path}">
           <h2>${product.product.product_name}</h2>
-          <p>Price: ${product.product.product_price}</p>
+          <p>Price:&#x20A6;${addCommasToNumber(product.product.product_price)}</p>
           <p>Quantity available: ${product.product.product_quantity}</p>
           <div class="product-buttons">
             <button style="background:red; display: ${product.product.status==='1'? 'block':'none'}" class="add" onclick=removeProductsFromHomePage('${product.product.product_id}')>Remove from Homepage</button>
             <button style="background:blue; display: ${product.product.status==='0'? 'block':'none'}" class="add" onclick=addProductsToHomePage('${product.product.product_id}')>Add to Homepage</button>
-            <button class="remove" onclick=deleteProduct('${product.product_id}')>Delete Product</button>
+            <button class="remove" onclick=deleteProduct('${product.product.product_id}')>Delete Product</button>
           </div>
         </div>
       `;
@@ -96,12 +96,10 @@ const removeProductsFromHomePage=(id)=>{
 }
 
 const deleteProduct=(id)=>{
+  console.log(id)
   fetch(`http://127.0.0.1:8080/api/deleteProduct/${id}`, {
-    method: "DELETE",
-    credentials: "include",
-    headers: {
-      'Content-Type': 'application/json',
-    }
+    method: "DELETE", 
+    credentials: "include"
   })
     .then((res) => res.json())
     .then((res)=>{
@@ -109,6 +107,24 @@ const deleteProduct=(id)=>{
       window.location.href="http://127.0.0.1:5500/christo_energy-lpg/admin/products.html"
     })
 }
+
+ 
+function addCommasToNumber(num) {
+  // Convert the number to a string
+  let numString = num.toString();
+
+  // Split the integer and decimal parts
+  let parts = numString.split('.');
+
+  // Add commas to the integer part
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Join the integer and decimal parts back together
+  let result = parts.join('.');
+
+  return result;
+}
+
 
 
 window.onload = function () {

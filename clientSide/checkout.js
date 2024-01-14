@@ -62,6 +62,10 @@ button.addEventListener('click', () => {
       item.style.border = '1.5px solid red';
       showAuthPopup("Please enter a valid email", "red")
       invalidInputs.push(item.name);
+    } else if (item.name === "Phone" && item.value.length <= 9) {
+      item.style.border = '1.5px solid red';
+      showAuthPopup("Please enter a valid phone number", "red")
+      invalidInputs.push(item.name);
     }
   });
 
@@ -179,7 +183,11 @@ button.addEventListener('click', () => {
       })
       .then((res)=>{
         console.log(res)
-        if(res.status==true){
+        if(res.code=="ENOTFOUND"){
+          showAuthPopup("Please check connection and try again", "red")
+          return
+        }
+        else if(res.status==true){
           showAuthPopup("Success!. Redirecting to paystack", "rgb(13, 187, 13)")
           // showAuthPopup("Success!. Redirecting to paystack", "black")
           localStorage.setItem("ref", res.data.reference)

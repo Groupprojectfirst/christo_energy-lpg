@@ -21,7 +21,7 @@ const fetchAdmin = (url) => {
           })
             .then((res) => res.json())
             .then((res) => {
-               generatePaymentsTable(res);
+               generatePaymentsTable(sortByTime(res));
             })
          }
       });
@@ -51,7 +51,7 @@ const fetchAdmin = (url) => {
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${new Date(payment.createdAt).toISOString().split('T')[0]}</td>
-            <td>$${payment.amountPaid}</td>
+            <td>&#x20A6;${addCommasToNumber(payment.amountPaid)}</td>
             <td>${payment.buyer}</td>
             <td>${payment.status}</td>
           `;
@@ -62,11 +62,40 @@ const fetchAdmin = (url) => {
         const totalRow = document.createElement('tr');
         totalRow.innerHTML = `
           <td colspan="3" style="text-align:right; font-weight:bold;">Total amount received:</td>
-          <td style="font-weight:bold;">$${totalAmount.toFixed(2)}</td>
+          <td style="font-weight:bold;">&#x20A6;${addCommasToNumber(totalAmount.toFixed(2))}</td>
         `;
         paymentsBody.appendChild(totalRow);
       }
     }
+
+
+
+    
+function sortByTime(arrayOfObjects) {
+  arrayOfObjects.sort((a, b) => {
+     return new Date(b.createdAt) - new Date(a.createdAt);
+   });
+ 
+   return arrayOfObjects;
+ }
+
+ 
+function addCommasToNumber(num) {
+  // Convert the number to a string
+  let numString = num.toString();
+
+  // Split the integer and decimal parts
+  let parts = numString.split('.');
+
+  // Add commas to the integer part
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Join the integer and decimal parts back together
+  let result = parts.join('.');
+
+  return result;
+}
+
     
   // Call the function to generate orders list on page load
 window.onload = function () {

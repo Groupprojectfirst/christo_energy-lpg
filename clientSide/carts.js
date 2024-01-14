@@ -19,7 +19,7 @@ function renderCart(arr) {
       <img src="${cartItem.imageLink}" alt="${cartItem.itemName}" class="item-image">
       <div class="item-details">
         <h3>${cartItem.itemName}</h3>
-        <p>$${Number(cartItem.price).toFixed(2)}</p>
+        <p>&#x20A6;${addCommasToNumber(Number(cartItem.price).toFixed(2))}</p>
       </div>
       <div class="item-actions">
         <button onclick="removeItem('${cartItem.item_id}',' ${cartItem.buyerId}')"><i class="material-icons">remove_shopping_cart</i></button>
@@ -35,7 +35,7 @@ function renderCart(arr) {
   });
 
   totalItemsSpan.textContent = totalItems;
-  totalPriceSpan.textContent = totalPrice.toFixed(2);
+  totalPriceSpan.textContent = addCommasToNumber(totalPrice.toFixed(2));
   }
 
 
@@ -195,4 +195,21 @@ function showLoadingPopup() {
   setTimeout(() => {
     loadingPopup.style.display = 'none';
   }, 4000);
+}
+
+
+function addCommasToNumber(num) {
+  // Convert the number to a string
+  let numString = num.toString();
+
+  // Split the integer and decimal parts
+  let parts = numString.split('.');
+
+  // Add commas to the integer part
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Join the integer and decimal parts back together
+  let result = parts.join('.');
+
+  return result;
 }

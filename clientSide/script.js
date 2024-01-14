@@ -84,8 +84,13 @@ const createNewEvent=(eventType, eventData)=>{
 
 /* navbar toggle*/
 const cartValue=document.querySelector(".header-btn-group .badge")
+const cartValueMobile=document.querySelector(".header .container .badge")
 const headerDetailsLoggedOut=document.querySelector('.header-btn-group .profile_form_user')
-const headerDetailsLoggedIn=document.querySelector('.header-btn-group .userSignedin')
+const headerDetailsLoggedIn=document.querySelector('.header .container .header-btn-group .userSignedin')
+const headerDetailsLoggedIn2=document.querySelector('.header .container .userSignedin')
+
+const headerDetailsLoggedOut2=document.querySelector('.navbar .profile_form_user')
+// const headerDetailsLoggedIn2=document.querySelector('.navbar .userSignedin2')
 const fetchCartItems = async(url, buyerId) => {
   fetch(url, {
     method: "POST",
@@ -102,10 +107,12 @@ const fetchCartItems = async(url, buyerId) => {
       localStorage.setItem("cartLength", 0)
       var cartsNum=localStorage.getItem("cartLength")
       cartValue.textContent=cartsNum
+      cartValueMobile.textContent=cartsNum
      }else{
       localStorage.setItem("cartLength", res.data.length)
       var cartsNum=localStorage.getItem("cartLength")
       cartValue.textContent=cartsNum
+      cartValueMobile.textContent=cartsNum
      }});
 };
 
@@ -119,13 +126,19 @@ const fetchUser = (url) => {
       if (res.message == "login first") {
         console.log(res)
         localStorage.setItem("userId", "")
+        headerDetailsLoggedIn.classList.add("userSignOut")
+        headerDetailsLoggedIn2.classList.add("userSignOut")
       } else {
         console.log(res)
         console.log(headerDetailsLoggedOut)
         headerDetailsLoggedOut.style.display="none"
-        headerDetailsLoggedIn.style.display="block"
+        headerDetailsLoggedIn.classList.add("userSign")
+        headerDetailsLoggedIn2.classList.add("userSign")
+        headerDetailsLoggedOut2.style.display="none"
         headerDetailsLoggedIn.querySelector(".name").textContent=res.user.email
         headerDetailsLoggedIn.querySelector("img").src=res.user.image
+        headerDetailsLoggedIn2.querySelector(".name").textContent=res.user.email
+        headerDetailsLoggedIn2.querySelector("img").src=res.user.image
        localStorage.setItem("userId", res.user.id)
        fetchCartItems('http://127.0.0.1:8080/api/myCarts', localStorage.getItem("userId"))
       }
@@ -145,14 +158,12 @@ const logout=(url)=>{
 }
 
 headerDetailsLoggedIn.querySelector("button").addEventListener('click', ()=>{
-//  var result= confirm("Are you sure you want to logout?");
-  showQuestionPopup("Are you sure you want to logout?")
-  // if(result){
-  //   logout("http://127.0.0.1:8080/api/logout")
-  //   window.location.href = "http://127.0.0.1:5500/christo_energy-lpg/clientSide/index.html";
-  // }else{
-  //   return
-  // }
+showQuestionPopup("Are you sure you want to logout?")
+
+})
+headerDetailsLoggedIn2.querySelector("button").addEventListener('click', ()=>{
+showQuestionPopup("Are you sure you want to logout?")
+
 })
 
 
@@ -163,7 +174,14 @@ const menuToggleBtn = document.querySelector("[data-nav-toggle-btn]");
 menuToggleBtn.addEventListener("click", function (){
   navbar.classList.toggle("active");
   this.classList.toggle("active");
+  // formBut2.style.display=""
 });
+
+
+const formBut1=document.querySelector("nav .formBut1")
+const formBut2=document.querySelector("nav .formBut2")
+// formBut2.style.display="none"
+
 
 for(let i = 0; i < navbarLinks.length; i++){
   navbarLinks[i].addEventListener("click", function (){
@@ -188,19 +206,19 @@ window.addEventListener("scroll", function (){
 
 /* search box toggle*/
 
-const searchBtn = document.querySelector("[data-search-btn]");
-const searchContainer = document.querySelector("[data-search-container]");
-const searchSubmitBtn = document.querySelector("[data-search-submit-btn]");
-const searchCloseBtn = document.querySelector("[data-search-close-btn]");
+// const searchBtn = document.querySelector("[data-search-btn]");
+// const searchContainer = document.querySelector("[data-search-container]");
+// const searchSubmitBtn = document.querySelector("[data-search-submit-btn]");
+// const searchCloseBtn = document.querySelector("[data-search-close-btn]");
 
-const searchBoxElems = [searchBtn, searchSubmitBtn, searchCloseBtn];
+// const searchBoxElems = [searchBtn, searchSubmitBtn, searchCloseBtn];
 
-for(let i = 0; i < searchBoxElems.length; i++) {
-  searchBoxElems[i].addEventListener("click", function (){
-    searchContainer.classList.toggle("active");
-    document.body.classList.toggle("active");
-  });
-}
+// for(let i = 0; i < searchBoxElems.length; i++) {
+//   searchBoxElems[i].addEventListener("click", function (){
+//     searchContainer.classList.toggle("active");
+//     document.body.classList.toggle("active");
+//   });
+// }
 
 
 /**
@@ -548,8 +566,7 @@ const generateProductsList=(array)=>{
             alt="${item.product.alt}"
             class="w-100"
           />
-          <div class="badge">15</div>
-          <button class="btn food-menu-btn" onclick='addItem(${JSON.stringify(item)})'>add to cart</button>
+           <button class="btn food-menu-btn" onclick='addItem(${JSON.stringify(item)})'>add to cart</button>
           <div class="wrapper">
             <div class="rating-wrapper">
               <ion-icon name="star"></ion-icon>
@@ -562,8 +579,7 @@ const generateProductsList=(array)=>{
           <h3 class="h3 card-title">${item.product.product_name}</h3>
           <div class="price-wrapper">
             <p class="price-text">Price:</p>
-            &#x20A6;<data class="price" value="${item.product.product_price}">${Number(item.product.product_price).toFixed()}</data>
-            <del class="del">&#x20A6; ${Number(Number(item.product.product_price)* 0.01).toFixed()}</del>
+            &#x20A6;<data class="price" value="${item.product.product_price}">${addCommasToNumber(Number(item.product.product_price).toFixed())}</data>
           </div>
         </div>
       </div>
@@ -652,14 +668,15 @@ function confirmAction() {
   },500)
 }
 
-
-function generateFuelList(array) {;
+function generateFuelList(array) {
   const container = document.querySelector('.sec .con .inner #prod');
 
-  const htmlContent = `
-          ${array.map(fuel => `
-          <option value="${fuel.fuel}" data-amount="${fuel.amount_per_liter}">${fuel.fuel}</option>`).join('')}
-  `;
+  const htmlContent = array
+    .filter(fuel => fuel.availability !== 'Not available') // Exclude items with fuel as 'not available'
+    .map(
+      fuel => `<option value="${fuel.fuel}" data-amount="${fuel.amount_per_liter}">${fuel.fuel}----->(A liter is &#x20A6;${addCommasToNumber(fuel.amount_per_liter)})</option>`
+    )
+    .join('');
 
   container.innerHTML = htmlContent;
 }
@@ -676,6 +693,33 @@ const fetchFuels=()=>{
     generateFuelList(res)
   })
 }
+
+
+
+
+
+
+function addCommasToNumber(num) {
+  // Convert the number to a string
+  let numString = num.toString();
+
+  // Split the integer and decimal parts
+  let parts = numString.split('.');
+
+  // Add commas to the integer part
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Join the integer and decimal parts back together
+  let result = parts.join('.');
+
+  return result;
+}
+
+
+
+
+
+
 
 fetchFuels()
 

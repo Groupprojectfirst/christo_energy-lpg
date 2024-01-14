@@ -100,6 +100,11 @@
       justify-content: space-between;
       padding: 20px;
     }
+    @media (max-width:572px) {
+      main{
+        flex-direction: column;
+      }
+    }
     
     .cart-items {
       flex: 2;
@@ -110,6 +115,14 @@
       background-color: #f5f5f5;
       padding: 20px;
       border-radius: 8px;
+      button{
+        padding: 7px;
+        background-color: orange;
+        color: white;
+        border: 1px solid white;
+        border-radius: 7px;
+        cursor: pointer;
+      }
     }
   /* Additional styles for the cart items */
   .cart-item {
@@ -150,6 +163,11 @@
         }
       }
     }
+    @media (max-width:425px) {
+      .cart-item{
+       font-size: 15px;
+      }
+     }
   }
   
   /* Define more styles as needed */

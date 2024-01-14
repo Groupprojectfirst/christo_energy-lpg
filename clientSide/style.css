@@ -6,7 +6,7 @@
   --gray-x-11-gray: hsl(0, 0%, 73%);
   --champgane-pink: hsl(23, 61%, 86%);
   --spanish-gray: hsl(0, 0%, 60%);
-  --sonic-silver: hsl(0, 0%, 47%);
+  --sonic-silver: hsl(0, 0%, 47%); 
   --deep-saffron: hsl(32, 100%, 59%);
   --dark-orange: hsl(28, 100%, 58%);
   --desert-sand: hsl(23, 49%, 82%);
@@ -348,8 +348,16 @@ body.active{
   position: fixed;
   top: -95px;
   background-color: var(--white);
-  animation: slideIn 0.5s ease-out forwards;
+  /* transform: translateY(100%); */
+  /* transition: 0.5s ease-out; */
+  animation: slideIn 0.5s ease forwards;
 }
+
+/* @media (max-width:391px) {
+   .header.active{
+    top: -105px;
+   }
+} */
 
 @keyframes slideIn {
   0% {transform: translateY(0);}
@@ -382,6 +390,7 @@ body.active{
   gap: 20px;
  }
 
+ 
   .nav-link{
   position: relative;
  }
@@ -421,6 +430,14 @@ body.active{
   display: grid;
   gap: 4px;
  }
+ .formBut2{
+  display: none;
+  margin: 10px;
+}
+.carts2{
+  display: none;
+}
+
 
  .line{
   width: 10px;
@@ -429,7 +446,39 @@ body.active{
   border-radius: 5px;
   transition: var(--transition-1);
  }
+ .userSignedin2{
+  /* border: 1px solid black; */
+  width: 6em;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-left: 30px;
+  display: none;
+  margin-top: 4em;
+}
 
+.userSignedin2 img{
+   border: 2px solid orange;
+   width: 2.7em;
+   height: 2.7em;
+   border-radius: 50%;
+   margin-right: 5px;
+}
+
+.userSignedin2 button{
+  font-size: 14px;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid orangered;
+}
+.userSignedin2 span{
+  font-size: 14px;
+}
  .line.middle{
   width: 20px;
  }
@@ -466,8 +515,18 @@ body.active{
  }
 
  .navbar.active{
-  height: 236px;
+  height: 500px;
   visibility: visible;
+ }
+
+ .navbar .carts2{
+  margin-top: 1em;
+  float: left;
+  margin-left: 3em;
+ }
+ .navbar .formBut2 button{
+  margin-top: 4em;
+  display: block;
  }
 
  .navbar-list{
@@ -1990,6 +2049,39 @@ input::placeholder{
   }
 }
 
+
+@media (max-width:768px) {
+  .header{
+    background-color: white;
+  }
+  .hero{
+    background: url(../images/6kg_gas.jpg),linear-gradient(45deg, rgb(255, 102, 0), black);
+    background-blend-mode: color-burn;
+    background-repeat: no-repeat;
+    height: 40em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero .hero-content .hero-title, .hero-text{
+    color: white;
+    /* font-size: 30px; */
+  }
+}
+
+@media (max-width:454px) {
+  .con{
+    width: 80%;
+  }
+  .con form .inner input, .con form .inner select{
+    width: 80%;
+  }
+  .reg{
+    font-size: 2.1rem;
+  }
+}
+
 /**
 * responsive for larger than 768px screen
 */
@@ -2505,7 +2597,7 @@ input::placeholder{
 .visit-prompt {
   position: fixed;
   color: white;
-  bottom: -100px; /* Initial position off the screen */
+  bottom: -200px; /* Initial position off the screen */
   right: 20px;
   background-color: rgb(255, 153, 0);
   border: 1px solid #ccc;
@@ -2513,6 +2605,12 @@ input::placeholder{
   border-radius: 5px;
   z-index: 3;
   transition: bottom 0.5s ease; /* Transition for smooth sliding animation */
+}
+
+@media (max-width:500px) {
+  .visit-prompt{
+    width: 80%;
+  }
 }
 
 .visit-prompt.show {
@@ -2595,4 +2693,56 @@ input::placeholder{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+@media (min-width:922px) {
+  nav .userSignedin{
+    display: none;
+    margin-top: 4em;
+     align-items: center;
+     justify-content: space-between;
+  }
+  
+}
+
+@media (max-width:922px) {
+  .formBut1{
+    display: none;
+  }
+  .carts1{
+    display: none;
+  }
+  .carts2{
+    display:block;
+  }
+  .formBut2{
+    display: flex;
+  }
+  .logo{
+    font-size: 2.3rem;
+  }
+  .header .container .header-btn-group .userSignedin{
+    display: none;
+  }
+  
+}
+
+
+.userSign{
+  display: flex;
+}
+nav .userSign{
+ margin-top: 4em;
+}
+.header-btn-group .userSign{
+  margin-right: 4em;
+}
+
+.userSignOut{
+  display: none;
+}
+
+.carts1{
+  margin-left: 2em;
 }

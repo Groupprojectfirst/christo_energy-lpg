@@ -40,6 +40,7 @@ const fetchAdmin = (url) => {
     .then((res)=>{
       console.log(res)
       generateFuelTable(res)
+      generateFuelList(res)
     })
   }
 
@@ -207,18 +208,36 @@ const product = {
 
  
   function generateFuelTable(array) {
-    const container = document.querySelector("#fuelTableContainer table");
-
+    console.log(array)
+    const container = document.querySelector("#fuelTableContainer table tbody");
+if(array.message=="no fuels"){
+  const nofuelsRow = document.createElement('tr');
+  nofuelsRow.innerHTML = `
+    <td colspan="4" style="text-align:center; color:black;margin:15px; background:inherit; font-weight:bold">No fuels available</td>
+  `;
+  container.appendChild(nofuelsRow);
+}
     const htmlContent = `
             ${array.map(fuel => `
               <tr>
                 <td>${fuel.fuel}</td>
-                <td>${fuel.amount_per_liter}</td>
+                <td>&#x20A6;${addCommasToNumber(fuel.amount_per_liter)}</td>
                 <td>${new Date(fuel.updatedAt).toISOString().split('T')[0]}</td>
                 <td>${fuel.availability}</td>
               </tr>`).join('')}
     `;
 
+    container.innerHTML = htmlContent;
+  }
+
+  function generateFuelList(array) {;
+    const container = document.querySelector('.fuelPopupCont .fuelPopup select');
+  
+    const htmlContent = `
+            ${array.map(fuel => `
+            <option value="${fuel.fuel}" data-amount="${fuel.amount_per_liter}">${fuel.fuel}</option>`).join('')}
+    `;
+  
     container.innerHTML = htmlContent;
   }
 
@@ -362,3 +381,21 @@ function addFuelHandler( fuel,amount_per_liter) {
         console.error('There was a problem with the fetch operation:', error);
       });
   }
+
+
+  function addCommasToNumber(num) {
+    // Convert the number to a string
+    let numString = num.toString();
+  
+    // Split the integer and decimal parts
+    let parts = numString.split('.');
+  
+    // Add commas to the integer part
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  
+    // Join the integer and decimal parts back together
+    let result = parts.join('.');
+  
+    return result;
+  }
+  

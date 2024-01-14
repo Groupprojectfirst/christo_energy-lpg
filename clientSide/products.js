@@ -1,6 +1,6 @@
-const cartValue=document.querySelector(".header-btn-group .badge")
-const headerDetailsLoggedOut=document.querySelector('.header-btn-group .profile_form_user')
-const headerDetailsLoggedIn=document.querySelector('.header-btn-group .userSignedin')
+const cartValue=document.querySelector(".badge")
+// const headerDetailsLoggedOut=document.querySelector('.header-btn-group .profile_form_user')
+// const headerDetailsLoggedIn=document.querySelector('.header-btn-group .userSignedin')
 
 const foodMenu = document.querySelector('.food-menu-list');
 var obj = { status: false};
@@ -16,7 +16,7 @@ const addItem=(item)=>{
   saveItemToCart("http://127.0.0.1:8080/api/addToCart", obj )
   }
 
-
+ 
 
 // add to carts
 // add to carts
@@ -41,9 +41,11 @@ const saveItemToCart=(url, dataToSend)=>{
     .then(data => {
     console.log('Received data:', data);
     if(data.message=="login first"){
-    alert("Login to add items to the cart")
+    // alert("Login to add items to the cart")
+    showAuthPopup("Login to add items to the cart", "red")
     }else if(data.message=="Item already exists in the cart"){
-      alert(data.message)
+      showAuthPopup(data.message, "red")
+      // alert(data.message)
       return;
     } else{
     console.log(data)
@@ -72,7 +74,6 @@ const generateProductsList=(array)=>{
             alt="${item.product.alt}"
             class="w-100"
           />
-          <div class="badge">15</div>
           <button class="btn food-menu-btn" onclick='addItem(${JSON.stringify(item)})'>add to cart</button>
           <div class="wrapper">
             <div class="rating-wrapper">
@@ -86,8 +87,7 @@ const generateProductsList=(array)=>{
           <h3 class="h3 card-title">${item.product.product_name}</h3>
           <div class="price-wrapper">
             <p class="price-text">Price:</p>
-            &#x20A6;<data class="price" value="${item.product.product_price}">${Number(item.product.product_price).toFixed()}</data>
-            <del class="del">&#x20A6; ${Number(Number(item.product.product_price)* 0.01).toFixed()}</del>
+            &#x20A6;<data class="price" value="${item.product.product_price}">${addCommasToNumber(Number(item.product.product_price).toFixed())}</data>
           </div>
         </div>
       </div>
@@ -145,11 +145,11 @@ const fetchCartItems = async(url, buyerId) => {
           localStorage.setItem("userId", "")
         } else {
           console.log(res)
-          console.log(headerDetailsLoggedOut)
-          headerDetailsLoggedOut.style.display="none"
-          headerDetailsLoggedIn.style.display="block"
-          headerDetailsLoggedIn.querySelector(".name").textContent=res.user.email
-          headerDetailsLoggedIn.querySelector("img").src="/images/2kg_gas.jpg"
+          // console.log(headerDetailsLoggedOut)
+          // headerDetailsLoggedOut.style.display="none"
+          // headerDetailsLoggedIn.style.display="block"
+          // headerDetailsLoggedIn.querySelector(".name").textContent=res.user.email
+          // headerDetailsLoggedIn.querySelector("img").src="/images/2kg_gas.jpg"
          localStorage.setItem("userId", res.user.id)
          fetchCartItems('http://127.0.0.1:8080/api/myCarts', localStorage.getItem("userId"))
         }
@@ -219,3 +219,48 @@ function generateUniqueID() {
   }
   
 
+
+
+
+  // popup2 section
+
+function showAuthPopup(type, color) {
+  const authPopup = document.getElementById('authPopup');
+  const authMessage = document.getElementById('authMessage');
+
+  if (type === 'success') {
+    authMessage.textContent = 'Login Successful!';
+    authMessage.style.border = '1px solid rgb(13, 187, 13);';
+    authMessage.style.color = 'rgb(13, 187, 13);';
+  } else if (type === 'error') {
+    authMessage.textContent = 'Incorrect Password';
+    authMessage.style.border = '1px solid red';
+    authMessage.style.color = 'red';
+  }else{
+    authMessage.textContent=type
+    authMessage.style.border = `1px solid ${color}`;
+    authMessage.style.color = color;
+  }
+
+  authPopup.style.display = 'flex';
+  setTimeout(() => {
+    authPopup.style.display = 'none';
+  }, 1500);
+}
+
+
+function addCommasToNumber(num) {
+  // Convert the number to a string
+  let numString = num.toString();
+
+  // Split the integer and decimal parts
+  let parts = numString.split('.');
+
+  // Add commas to the integer part
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Join the integer and decimal parts back together
+  let result = parts.join('.');
+
+  return result;
+}

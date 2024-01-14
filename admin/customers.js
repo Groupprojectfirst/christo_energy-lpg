@@ -23,7 +23,7 @@ const fetchAdmin = (url) => {
             .then((res) => res.json())
             .then((res) => {
                console.log(res)
-               generateCustomerTable(res);
+               generateCustomerTable(sortByTime(res));
                updateSeen("http://127.0.0.1:8080/api/updateBuyerSeen")
             })
          }
@@ -95,11 +95,23 @@ function generateCustomerTable(customers) {
       row.innerHTML = `
         <td>${customer.fullname}</td>
         <td>${customer.email}</td>
+        <td>${new Date(customer.created_at).toISOString().split('T')[0]}</td>
       `;
       tbody.appendChild(row);
     });
   }
 }
+
+
+  
+function sortByTime(arrayOfObjects) {
+  arrayOfObjects.sort((a, b) => {
+     return new Date(b.created_at) - new Date(a.created_at);
+   });
+ 
+   return arrayOfObjects;
+ }
+
 
 window.onload = function () {
     fetchAdmin("http://127.0.0.1:8080/api/adminside")
